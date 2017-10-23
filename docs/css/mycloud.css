@@ -1,3 +1,9 @@
+body,html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
 .home-page {
 	font-family: 'Montserrat', 'Helvetica', sans-serif;
 }
@@ -18,14 +24,18 @@
 	font-size: 36pt;
 	font-weight: bold;
 	text-align: center;
-	margin: 20px 20px;
+	margin: 20px 20px 0px 20px;
 	font-family: 'Roboto Condensed', 'Helvetica', sans-serif;
 }
 .home-page .page-content {
 	
 }
 .home-page .page-content h1 {
-	font-size: 27pt;
+	font-size: 21pt;
 	text-align: center;
 	margin: 20px 20px;
+	font-family: 'Roboto Condensed', 'Helvetica', sans-serif;
+}
+.home-page .page-content p {
+	font-size: 16pt;
 }
