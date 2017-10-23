@@ -1,3 +1,7 @@
+.home-page {
+	font-family: 'Montserrat', 'Helvetica', sans-serif;
+}
+
 .home-page .page-heading {
 	margin-bottom: 20px;
 	background-color: #1bab84;
@@ -6,6 +10,16 @@
 	margin: 0px;
 	padding: 20px 0px;
 	text-align: center;
+}
+.home-page .page-heading .heading img {
+	height: 48px;
+}
+.home-page .page-heading .heading h1 {
+	font-size: 36pt;
+	font-weight: bold;
+	text-align: center;
+	margin: 20px 20px;
+	font-family: 'Roboto Condensed', 'Helvetica', sans-serif;
 }
 .home-page .page-content {
 	
