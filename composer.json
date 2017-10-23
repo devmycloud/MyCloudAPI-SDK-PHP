@@ -1,0 +1,27 @@
+{
+    "name": "mycloudth/rest-api-sdk-php",
+    "description": "MyCloud's PHP SDK for REST APIs",
+    "keywords": ["mycloud", "fulfillment", "rest", "sdk"],
+    "type": "library",
+	"version": "0.1.0",
+    "license": "MyCloud Fulfillment Group API License v1",
+    "homepage": "http://mycloudth.github.io/MyCloud-SDK-PHP/",
+    "authors": [
+        {
+            "name": "Tim Endres",
+            "email": "tim@bkbasic.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "psr/log": "1.0.0",
+        "kelvinmo/simplejwt": "0.1.*"
+    },
+	"autoload": {
+		"psr-4": {
+			"MyCloud\\": "lib/MyCloud"
+		}
+	}
+}

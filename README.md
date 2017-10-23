@@ -1,6 +1,9 @@
 # MyCloudAPI-SDK-PHP
 PHP based SDK for the MyCloud Fulfillment API
 
+Please see the [Project Page](https://devmycloud.github.io/MyCloudAPI-SDK-PHP/) for up-to-date
+information, additional project details, and downloads.
+
 ## Prerequisites
    - PHP 5.6 or above
    - [curl](http://php.net/manual/en/book.curl.php), [json](http://php.net/manual/en/book.json.php) & [openssl](http://php.net/manual/en/book.openssl.php) extensions must be enabled
@@ -33,6 +36,9 @@ PHP based SDK for the MyCloud Fulfillment API
    is relative to this top-level "vendor" directory, so you must be careful to not rearrange
    the distribution package, or the Composer built dependencies are very likely to fail.
 
+	If you do not want to work with Composer, then you can obtain a binary distribution
+	that can be downloaded from the [Project Page](https://devmycloud.github.io/MyCloudAPI-SDK-PHP/).
+   
    If you are working with the binary distribution of the SDK, you must copy the "vendor"
    directory into your project. In your code, you will need to use:
 ```

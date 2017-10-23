@@ -1,0 +1,132 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "dc240f2da561ec8f48749ce1ec46b8dc",
+    "packages": [
+        {
+            "name": "kelvinmo/simplejwt",
+            "version": "v0.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kelvinmo/simplejwt.git",
+                "reference": "ac4389dcf75f859ad371977d0f0275243ead320b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kelvinmo/simplejwt/zipball/ac4389dcf75f859ad371977d0f0275243ead320b",
+                "reference": "ac4389dcf75f859ad371977d0f0275243ead320b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-hash": "*",
+                "ext-openssl": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ext-bz2": "*",
+                "ext-phar": "*",
+                "phing/phing": "2.*",
+                "phpunit/phpunit": "4.*",
+                "symfony/console": "2.7.*"
+            },
+            "bin": [
+                "bin/jwkstool.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SimpleJWT\\": "src/SimpleJWT"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kelvin Mo",
+                    "email": "kmo@users.sourceforge.net"
+                }
+            ],
+            "description": "An simple JSON Web Token library for PHP.",
+            "homepage": "https://github.com/kelvinmo/simplejwt",
+            "keywords": [
+                "JOSE",
+                "JWE",
+                "jwt"
+            ],
+            "time": "2017-08-12T10:14:03+00:00"
+        },
+        {
+            "name": "mycloud",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@th-server1.bkbasic.com:/opt/git/mycloud-models.git",
+                "reference": "20785b3d04b4d58e7013366f9ba80a9aa1c8a7f6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MyCloud\\Models\\": "mclmodels/src/MyCloud/Models"
+                }
+            },
+            "time": "2017-10-20T05:12:08+00:00"
+        },
+        {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21T11:40:51+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "mycloud": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.6.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "platform-dev": []
+}
