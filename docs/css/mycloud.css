@@ -9,32 +9,34 @@ body,html {
 }
 
 .home-page .page-heading {
-	margin-bottom: 20px;
+	margin: 0px;
 	background-color: #1bab84;
 }
 .home-page .page-heading .heading {
 	margin: 0px;
-	padding: 20px 0px;
+	padding: 30px 0px 40px 0px;
 	text-align: center;
 }
 .home-page .page-heading .heading img {
 	height: 48px;
 }
 .home-page .page-heading .heading h1 {
-	font-size: 36pt;
+	color: white;
+	font-size: 24pt;
 	font-weight: bold;
 	text-align: center;
 	margin: 20px 20px 0px 20px;
 	font-family: 'Roboto Condensed', 'Helvetica', sans-serif;
 }
 .home-page .page-content {
-	
+	max-width: 1120px;
+	margin: 0px auto;
+	padding: 20px 20px;
 }
 .home-page .page-content h1 {
 	font-size: 21pt;
-	text-align: center;
-	margin: 20px 20px;
-	font-family: 'Roboto Condensed', 'Helvetica', sans-serif;
+	text-align: left;
+	margin: 20px 0px;
 }
 .home-page .page-content p {
 	font-size: 16pt;
