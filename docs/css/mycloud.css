@@ -1,0 +1,17 @@
+.home-page .page-heading {
+	margin-bottom: 20px;
+	background-color: #1bab84;
+}
+.home-page .page-heading .heading {
+	margin: 0px;
+	padding: 20px 0px;
+	text-align: center;
+}
+.home-page .page-content {
+	
+}
+.home-page .page-content h1 {
+	font-size: 27pt;
+	text-align: center;
+	margin: 20px 20px;
+}
