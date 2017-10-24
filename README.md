@@ -27,7 +27,7 @@ To include the project, make the following additions to your composer.json file:
 Then run "composer install" or "composer update" to load the SDK into your project.
 Once you have installed the SDK via composer, you are ready to use the SDK in your
 project, without needing any "requires" in your code. However, you will need to set
-the constant MCAPI_CONFIG_PATH as noted below.
+the constant MCAPI\_CONFIG\_PATH as noted below.
 
 If you are not using Composer, then you can obtain the "Binary Distribution" of the SDK.
 This will contain a top-level directory named "vendor". The binary distribution is simply
@@ -46,24 +46,24 @@ require_once('path_to_vendor_directory/autoload.php');
 ```
 which will load the SDK and it's dependencies. After this require, you should be able to
 make calls against the API. However, before you require the autoload.php file, please be
-sure to set the constant MCAPI_CONFIG_PATH as noted below.
+sure to set the constant MCAPI\_CONFIG\_PATH as noted below.
 
-The entire API depends on the file "sdk_config.ini" to properly configure the information that
+The entire API depends on the file "sdk\_config.ini" to properly configure the information that
 the API needs to work correctly. To ensure this ini file is available to the API, your code must
-define the constant "MCAPI_CONFIG_PATH" to point to the directory containing this configuration
+define the constant "MCAPI\_CONFIG\_PATH" to point to the directory containing this configuration
 file. This constant must be defined _before_ you access any of the SDK objects or methods, and it
 must be defined before calling "require_once()" (if you are using the binary distribution). If
 this constant is not defined, then the config file will be looked for in
 `dirname(__FILE__)/../config/`, but this is not recommended.
 
-An example of an sdk_config.ini file is included in the "examples" directory, as well as in
+An example of an sdk\_config.ini file is included in the "examples" directory, as well as in
 the "vendor" directory. Either file is an excellent starting point for your configuration.
 The config file contains many comments to help you understand each configuration item.
 
 Examples of every possible use of the API are provided in the top-level directory 'examples'.
 The file "bootstrap.php" is essential to every example to properly load the API, so if you
 are having trouble running the examples, this would be the place to start. The examples all
-use the sdk_config.ini file included in the examples directory.
+use the sdk\_config.ini file included in the examples directory.
 
 __NOTE__ That every RESTful call to the API can return either an API Model object (the model
 requested by the RESTful call), or it can return an instance of MyCloud\Api\Core\MCError.

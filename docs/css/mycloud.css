@@ -2,25 +2,25 @@ body,html {
 	margin: 0px;
 	padding: 0px;
 	height: 100%;
-}
-
-.home-page {
 	font-family: 'Montserrat', 'Helvetica', sans-serif;
 }
 
-.home-page .page-heading {
+.home-page {
+}
+
+.page-heading {
 	margin: 0px;
 	background-color: #1bab84;
 }
-.home-page .page-heading .heading {
+.page-heading .heading {
 	margin: 0px;
 	padding: 30px 0px 40px 0px;
 	text-align: center;
 }
-.home-page .page-heading .heading img {
+.page-heading .heading img {
 	height: 48px;
 }
-.home-page .page-heading .heading h1 {
+.page-heading .heading h1 {
 	color: white;
 	font-size: 24pt;
 	font-weight: bold;
@@ -28,16 +28,69 @@ body,html {
 	margin: 20px 20px 0px 20px;
 	font-family: 'Roboto Condensed', 'Helvetica', sans-serif;
 }
-.home-page .page-content {
-	max-width: 1120px;
-	margin: 0px auto;
-	padding: 20px 20px;
+.page-heading .heading .buttons {
+	margin: 40px auto 0px auto;
 }
-.home-page .page-content h1 {
+.page-heading .heading .buttons a {
+	display: inline-block;
+	color: #f4f4f4;
+	font-size: 12pt;
+	font-weight: bold;
+	padding: 10px 20px;
+	margin: 10px 15px 0px 15px;
+	text-decoration: none;
+	border-radius: 7px;
+	border: 1px solid #f4f4f4;
+	background-color: transparent;
+}
+.page-heading .heading .buttons a span.fa {
+	font-size: 15pt;
+	margin-right: 4px;
+	line-height: 1em;
+	display: inline-block;
+	vertical-align: bottom;
+}
+.page-heading .heading .buttons a:hover {
+	color: #fff;
+	border: 1px solid #fff;
+	background-color: rgba(255,255,255,0.15);
+}
+
+.home-page .page-content,
+.readme-page .page-content {
+	max-width: 990px;
+	margin: 0px auto;
+	padding: 20px 40px;
+}
+.home-page .page-content h1,
+.readme-page .page-content h1 {
 	font-size: 21pt;
 	text-align: left;
 	margin: 20px 0px;
 }
 .home-page .page-content p {
-	font-size: 16pt;
+	font-size: 14pt;
+}
+.readme-page .page-content p {
+	font-size: 14pt;
+}
+
+pre {
+	padding: 10px 10px;
+	background-color: #e8e8e8;
+}
+
+code {
+	padding: 0px 7px;
+	background-color: #e8e8e8;
+}
+
+@media screen and (max-width: 540px) {
+	.page-heading .heading .buttons { width: 60%; }
+	.page-heading .heading .buttons a {
+		display: block;
+		font-size: 11pt;
+		padding: 9px 15px;
+		margin: 10px 10px 0px 10px;
+	}
 }
