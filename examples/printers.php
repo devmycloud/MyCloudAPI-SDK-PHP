@@ -1,0 +1,100 @@
+<?php
+
+function print_category( $title, $category ) {
+	print $title . "[" . $category->id . "]" . PHP_EOL;
+	print "   shopId: " . $category->shop_id . PHP_EOL;
+	print "   Code: " . $category->code . PHP_EOL;
+	print "   Name: " . $category->name . PHP_EOL;
+}
+
+function print_customer( $title, $customer ) {
+	print $title . "[" . $customer->id . "]" . PHP_EOL;
+	print "   shopId: " . $customer->shop_id . PHP_EOL;
+	print "   Code: " . $customer->code . PHP_EOL;
+	print "   Name: " . $customer->name . PHP_EOL;
+	print "   Address: " . $customer->address . PHP_EOL;
+	print "   Postcode: " . $customer->postcode . PHP_EOL;
+	print "   SocialID: " . $customer->social_id . PHP_EOL;
+	print "   Phone # " . $customer->phone_number . PHP_EOL;
+	print "   E-mail: " . $customer->email . PHP_EOL;
+	print "   Note: " . $customer->note . PHP_EOL;
+}
+
+function print_delivery_mode( $title, $delivery_mode ) {
+	print $title . "[" . $delivery_mode->id . "]" . PHP_EOL;
+	print "   shopId " . $delivery_mode->shop_id . PHP_EOL;
+	print "   Delivery Code " . $delivery_mode->delivery_code . PHP_EOL;
+	print "   Name " . $delivery_mode->name . PHP_EOL;
+	print "   Contact " . $delivery_mode->contact . PHP_EOL;
+	print "   Is Available? " . ($delivery_mode->available ? 'YES' : 'NO') . PHP_EOL;
+}
+
+function print_order( $title, $order ) {
+	print $title . "[" . $order->id . "]" . PHP_EOL;
+	print "   status " . $order->status . PHP_EOL;
+	print "   shopId " . $order->shop_id . PHP_EOL;
+	print "   mcNumber " . $order->mc_number . PHP_EOL;
+	print "   Order # " . $order->order_number . PHP_EOL;
+	print "   Weight " . $order->weight . PHP_EOL;
+	print "   Shipping Information:" . PHP_EOL;
+	print "      Name: " . $order->name . PHP_EOL;
+	print "      Address: " . $order->address . PHP_EOL;
+	print "      PostCode: " . $order->postcode . PHP_EOL;
+	print "      Phone # " . $order->phone_number . PHP_EOL;
+
+	$customer = $order->getCustomer();
+	if ( ! empty($customer) ) {
+		print "   Customer[" . $customer->id . "]" . PHP_EOL;
+		print "      Code: " . $customer->code . PHP_EOL;
+		print "      Name: " . $customer->name . PHP_EOL;
+		print "      Address: " . $customer->address . PHP_EOL;
+		print "      Postcode: " . $customer->postcode . PHP_EOL;
+		print "      SocialID: " . $customer->social_id . PHP_EOL;
+		print "      Phone # " . $customer->phone_number . PHP_EOL;
+		print "      E-mail: " . $customer->email . PHP_EOL;
+		print "      Note: " . $customer->note . PHP_EOL;
+	} else {
+		print "   HAS NO Customer" . PHP_EOL;
+	}
+
+	$delivery_mode = $order->getDeliveryMode();
+	if ( ! empty($delivery_mode) ) {
+		print "   DeliveryMode[" . $delivery_mode->id . "]" . PHP_EOL;
+		print "      Name: " . $delivery_mode->name . PHP_EOL;
+		print "      Code: " . $delivery_mode->code . PHP_EOL;
+		print "      Contact: " . $delivery_mode->contact . PHP_EOL;
+	} else {
+		print "   HAS NO DeliveryMode" . PHP_EOL;
+	}
+
+	print "   --- Order Items ------------------------" . PHP_EOL;
+	foreach ( $order->getOrderItems() as $order_item ) {
+		print "   OrderItem[" . $order_item->id . "]" . PHP_EOL;
+		print "      Price: " . $order_item->price . PHP_EOL;
+		print "      Quantity: " . $order_item->quantity . PHP_EOL;
+		$product = $order_item->getProduct();
+		if ( ! empty($product) ) {
+			print "      --- Product -------------------------" . PHP_EOL;
+			print "          Product[" . $product->id . "]" . PHP_EOL;
+			print "          SKU: " . $product->sku . PHP_EOL;
+			print "          Name: " . $product->name . PHP_EOL;
+			print "          Description: " . $product->description . PHP_EOL;
+			print "          PhotoUrl: " . $product->photo_url . PHP_EOL;
+			print "          SupplierRef: " . $product->supplier_reference . PHP_EOL;
+		}
+	}
+}
+
+function print_product( $title, $product ) {
+	print $title . "[" . $product->id . "]" . PHP_EOL;
+	print "   shopId: " . $product->shop_id . PHP_EOL;
+	print "   SKU: " . $product->sku . PHP_EOL;
+	print "   Name: " . $product->name . PHP_EOL;
+	print "   Description: " . $product->description . PHP_EOL;
+	print "   PhotoUrl: " . $product->photo_url . PHP_EOL;
+	print "   SupplierRef: " . $product->supplier_reference . PHP_EOL;
+	print "   ClientReference[1]: " . $product->getClientReference(0) . PHP_EOL;
+	print "   ClientReference[2]: " . $product->getClientReference(1) . PHP_EOL;
+	print "   ClientReference[3]: " . $product->getClientReference(2) . PHP_EOL;
+	print "   ClientReference[4]: " . $product->getClientReference(3) . PHP_EOL;
+}

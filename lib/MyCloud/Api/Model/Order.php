@@ -163,11 +163,31 @@ class Order extends MyCloudModel
 	/*
 	 * addProduct is a convenience function for adding an order item
 	 * using an existing Product object. This method will create a
-	 * new OrderItem object and add it to the Order. This is typically
+	 * new OrderItem object and add it to the Order. This should only
 	 * used when creating a new Order.
+	 *
+	 * NOTE You can create the product using only the product's id,
+	 *      but that product MUST already exist.
 	 */
 	public function addProduct( $product, $quantity, $price )
 	{
+		$order_item = new OrderItem( $this, $product, $quantity, $price );
+		$this->addOrderItem( $order_item );
+		return $this;
+	}
+
+	/*
+	 * addProductById is a convenience function for adding an order item
+	 * using only a Product id. This method will create a new OrderItem
+	 * object and add it to the Order. This should only used when creating
+	 * a new Order.
+	 *
+	 * NOTE The Product with the given product id MUST already exist.
+	 */
+	public function addProductById( $product_id, $quantity, $price )
+	{
+		$product = new Product();
+		$product->setId( $product_id );
 		$order_item = new OrderItem( $this, $product, $quantity, $price );
 		$this->addOrderItem( $order_item );
 		return $this;
@@ -220,7 +240,7 @@ class Order extends MyCloudModel
 					$orders[] = $order;
 				}
 			} else {
-				$orders = new MCError( 'API Returned invalid data' );
+				$orders = new MCError( 'API Returned invalid Order data' );
 				MCLoggingManager::getInstance(__CLASS__)
 					->error( "Order list not array: " . print_r($result['data']) );
 			}
@@ -254,7 +274,7 @@ class Order extends MyCloudModel
 				$order = new Order();
 				$order->fromArray( $result['data'] );
 			} else {
-				$order = new MCError( 'API Returned invalid data' );
+				$order = new MCError( 'API Returned invalid Order data' );
 				MCLoggingManager::getInstance(__CLASS__)
 					->error( "Order data not array: " . print_r($result['data']) );
 			}
@@ -266,6 +286,9 @@ class Order extends MyCloudModel
 
         return $order;
     }
+
+	// UNDONE The client MUST be able to set the Order's status!!!
+	//        Otherwise, how can they say the Order is APPROVED?!
 
     public function create( $apiContext = null )
     {
@@ -312,7 +335,7 @@ class Order extends MyCloudModel
 				$order = new Order();
 				$order->fromArray( $result['data'] );
 			} else {
-				$order = new MCError( 'API Returned invalid data' );
+				$order = new MCError( 'API Returned invalid Order data' );
 				MCLoggingManager::getInstance(__CLASS__)
 					->error( "Order data not array: " . print_r($result['data']) );
 			}
@@ -325,6 +348,69 @@ class Order extends MyCloudModel
         return $order;
     }
 
+    public function update( $apiContext = null )
+    {
+		$order = NULL;
+        $payload = $this->toArray();
+
+		$payload['customer_id'] = empty($this->customer) ? '0' : $this->customer->id;
+		$payload['delivery_mode_id'] = empty($this->delivery_mode) ? '0' : $this->delivery_mode->id;
+
+		$index  = 0;
+		foreach ( $this->order_items as $order_item ) {
+			if ( ! empty($order_item->id) ) {
+				$payload['order_items[' . $index . '][id]'] = $order_item->id;
+			}
+			if ( ! empty($order_item->product) ) {
+				$payload['order_items[' . $index . '][product_id]'] = $order_item->product->id;
+			}
+			$payload['order_items[' . $index . '][quantity]'] = $order_item->quantity;
+			$payload['order_items[' . $index . '][price]'] = $order_item->price;
+			$index++;
+		}
+
+		$index  = 0;
+		foreach ( $this->attachments as $attach ) {
+			$payload['attach_name[' . $index . ']'] = $attach['attachment'];
+			$payload['attach_file[' . $index . ']'] =
+				new \CurlFile(
+					$attach['filepath'],
+					$attach['filetype'],
+					$attach['filename']
+				);
+			$index++;
+		}
+		// print "CREATE ORDER: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
+
+        $json_data = self::executeCall(
+            "/v1/orders/" . $this->id,
+            "PATCH",
+            $payload,
+            array(),
+            $apiContext
+        );
+		// print "CREATE ORDER: JSON RESULT: " . $json_data . PHP_EOL;
+
+		$result = json_decode( $json_data, true );
+
+		if ( $result['success'] ) {
+			if ( isset($result['data']) && is_array($result['data']) ) {
+				$order = new Order();
+				$order->fromArray( $result['data'] );
+			} else {
+				$order = new MCError( 'API Returned invalid Order data' );
+				MCLoggingManager::getInstance(__CLASS__)
+					->error( "Order data not array: " . print_r($result['data']) );
+			}
+		} else {
+			$order = new MCError( $result['message'] );
+			MCLoggingManager::getInstance(__CLASS__)
+				->error( "Failed creating Order: " . $result['message'] );
+		}
+
+        return $order;
+    }
+	
 	public function fromArray( $data )
 	{
 		$this->assignAttributes( $data['attributes'] );

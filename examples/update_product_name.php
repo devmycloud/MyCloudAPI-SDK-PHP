@@ -8,13 +8,17 @@ use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\Product;
 
 try {
-	$product = Product::get( $argv[1] );
+	$updateProduct = new Product();
+	$updateProduct->id = $argv[1];
+	$updateProduct->name = $argv[2];
+
+	$product = $updateProduct->update();
 
 	if ( $product instanceof MCError ) {
-		print "ERROR retrieving product:" . PHP_EOL;
+		print "ERROR updating product:" . PHP_EOL;
 		print "      " . $product->getMessage() . PHP_EOL;
 	} else {
-		print_product( "Product", $product );
+		print_product( "Updated Product", $product );
 	}
 } catch ( Exception $ex ) {
 	print "EXCEPTION: " . $ex->getMessage() . PHP_EOL;

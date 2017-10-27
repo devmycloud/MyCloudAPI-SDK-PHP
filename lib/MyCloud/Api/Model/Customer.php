@@ -147,7 +147,7 @@ class Customer extends MyCloudModel
 					$customers[] = $customer;
 				}
 			} else {
-				$customers = new MCError( 'API Returned invalid data' );
+				$customers = new MCError( 'API Returned invalid Customer data' );
 				MCLoggingManager::getInstance(__CLASS__)
 					->error( "Customer list not array: " . print_r($result['data']) );
 			}
@@ -181,7 +181,7 @@ class Customer extends MyCloudModel
 				$customer = new Customer();
 				$customer->fromArray( $result['data'] );
 			} else {
-				$customer = new MCError( 'API Returned invalid data' );
+				$customer = new MCError( 'API Returned invalid Customer data' );
 				MCLoggingManager::getInstance(__CLASS__)
 					->error( "Customer data not array: " . print_r($result['data']) );
 			}
@@ -216,7 +216,43 @@ class Customer extends MyCloudModel
 				$customer = new Customer();
 				$customer->fromArray( $result['data'] );
 			} else {
-				$customer = new MCError( 'API Returned invalid data' );
+				$customer = new MCError( 'API Returned invalid Customer data' );
+				MCLoggingManager::getInstance(__CLASS__)
+					->error( "Customer data not array: " . print_r($result['data']) );
+			}
+		} else {
+			$customer = new MCError( $result['message'] );
+			MCLoggingManager::getInstance(__CLASS__)
+				->error( "Failed creating Customer: " . $result['message'] );
+		}
+
+        return $customer;
+    }
+
+    public function update( $apiContext = null )
+    {
+		$customer = NULL;
+        $payload = $this->toArray();
+
+		// print "UPDATE CUSTOMER: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
+
+        $json_data = self::executeCall(
+            "/v1/customers/" . $this->id,
+            "PATCH",
+            $payload,
+            array(),
+            $apiContext
+        );
+		// print "UPDATE CUSTOMER: JSON RESULT: " . $json_data . PHP_EOL;
+
+		$result = json_decode( $json_data, true );
+
+		if ( $result['success'] ) {
+			if ( isset($result['data']) && is_array($result['data']) ) {
+				$customer = new Customer();
+				$customer->fromArray( $result['data'] );
+			} else {
+				$customer = new MCError( 'API Returned invalid Customer data' );
 				MCLoggingManager::getInstance(__CLASS__)
 					->error( "Customer data not array: " . print_r($result['data']) );
 			}

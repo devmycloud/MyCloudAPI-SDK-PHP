@@ -109,12 +109,14 @@ class MCHttpConnection
                 curl_setopt( $ch, CURLOPT_POST, true );
                 curl_setopt( $ch, CURLOPT_POSTFIELDS, $payLoad );
                 break;
-
-            case 'PUT':
-            case 'PATCH':
-            case 'DELETE':
-                curl_setopt( $ch, CURLOPT_POSTFIELDS, $payLoad );
-                break;
+			//
+			// SEE NOTE IN MyCloudModel::executeCall()
+            //
+            // case 'PUT':
+            // case 'PATCH':
+            // case 'DELETE':
+            //     curl_setopt( $ch, CURLOPT_POSTFIELDS, $payLoad );
+            //     break;
         }
 
         // Default Option if Method not of given types in switch case
@@ -184,26 +186,17 @@ class MCHttpConnection
         // Close the curl request
         curl_close( $ch );
 
-        // More Exceptions based on HttpStatus Code
-        if ( in_array($httpStatus, self::$retryCodes) ) {
-            $ex = new MCConnectionException(
-                $this->httpConfig->getUrl(),
-                "Got Http response code $httpStatus when accessing {$this->httpConfig->getUrl()}. " .
-                "Retried $retries times."
-            );
+        // Throw Exceptions based on HttpStatus Code
+        if ( $httpStatus < 200 || $httpStatus >= 300 ) {
+			$msg = "Got Http response code " . $httpStatus . " when " .
+				$this->httpConfig->getMethod() . "-ing to " .
+				$this->httpConfig->getUrl() . ".";
+			if ( in_array($httpStatus, self::$retryCodes) ) {
+				$msg = $msg . " Retried " . $retries . " times.";
+			}
+            $ex = new MCConnectionException( $this->httpConfig->getUrl(), $msg, $httpStatus );
             $ex->setData( $result );
-            $this->logger->error( "Got Http response code $httpStatus when accessing {$this->httpConfig->getUrl()}. " .
-                "Retried $retries times." . $result );
-            $this->logger->debug( "\n\n" . str_repeat('=', 128) . "\n" );
-            throw $ex;
-        } elseif ( $httpStatus < 200 || $httpStatus >= 300 ) {
-            $ex = new MCConnectionException(
-                $this->httpConfig->getUrl(),
-                "Got Http response code $httpStatus when accessing {$this->httpConfig->getUrl()}.",
-                $httpStatus
-            );
-            $ex->setData( $result );
-            $this->logger->error( "Got Http response code $httpStatus when accessing {$this->httpConfig->getUrl()}. " . $result );
+            $this->logger->error( $msg . " " . $result );
             $this->logger->debug( "\n\n" . str_repeat('=', 128) . "\n" );
             throw $ex;
         }
@@ -244,7 +237,8 @@ class MCHttpConnection
 				$this->getUserAgent(MCConstants::SDK_NAME, MCConstants::SDK_VERSION));
         }
 
-        if ( $this->httpConfig->getMethod() == 'POST' || $this->httpConfig->getMethod() == 'PUT') {
+        if ( $this->httpConfig->getMethod() == 'POST' ||
+				$this->httpConfig->getMethod() == 'PUT') {
             $this->httpConfig->addHeader( 'MyCloud-Request-Id', $this->apiContext->getRequestId() );
         }
 

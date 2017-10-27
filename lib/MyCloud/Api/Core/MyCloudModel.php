@@ -256,6 +256,23 @@ class MyCloudModel
         $config = $apiContext->getConfig();
 		$token = $apiContext->getToken();
 
+		// NOTE
+		// PHP has some serious issues with PUT and PATCH. Specifically,
+		// you cannot perform File Uploads with PUT. Also, it appears that
+		// curl does not properly send the POST fields with PATCH (I am not
+		// entirely sure why this is not working, but the File Upload issue
+		// is a game-stopper, so it really does not matter does it?). Thus,
+		// we are using the Laravel (and Rails actually) "cheat" of using
+		// the POST method with a parameter to indicate the "real" method.
+
+		if ( $method == 'PUT' ) {
+			$method = 'POST';
+			$payLoad['_method'] = 'PUT';
+		} elseif ( $method == 'PATCH' ) {
+			$method = 'POST';
+			$payLoad['_method'] = 'PATCH';
+		}
+
 		if ( ! empty($token) ) {
 			$httpConfig = new MCHttpConfig( $url, $method, $config );
 			$http = new MCHttpConnection( $apiContext, $httpConfig, $token );

@@ -48,7 +48,7 @@ class DeliveryMode extends MyCloudModel
 					$modes[] = $delivery_mode;
 				}
 			} else {
-				$modes = new MCError( 'API Returned invalid data' );
+				$modes = new MCError( 'API Returned invalid DeliveryMode data' );
 				MCLoggingManager::getInstance(__CLASS__)
 					->error( "DeliveryMode list not array: " . print_r($result['data']) );
 			}
