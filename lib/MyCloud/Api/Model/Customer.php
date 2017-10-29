@@ -111,6 +111,11 @@ class Customer extends MyCloudModel
 		return $this->order;
 	}
 
+	/**
+	 * Get all Customers attached to your shop.
+	 *
+	 */
+
     public static function all( $params = array(), $apiContext = null )
     {
 		$products = NULL;
@@ -134,7 +139,7 @@ class Customer extends MyCloudModel
             array(),
             $apiContext
         );
-		// print "Customer::all() DATA: " . $json_data . "\n";
+		// print "Customer::all() DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -160,19 +165,24 @@ class Customer extends MyCloudModel
         return $customers;
     }
 
+	/**
+	 * Get a Customer by ID.
+	 *
+	 */
+
     public static function get( $customer_id, $apiContext = null )
     {
 		$customer = NULL;
 
         $payLoad = array();
         $json_data = self::executeCall(
-            "/v1/customers/" . $customer_id,
+            "/v1/customers/" . self::rfc3986Encode($customer_id),
             "GET",
             $payLoad,
             array(),
             $apiContext
         );
-		// print "Customer::get(" . $customer_id . ") DATA: " . $json_data . "\n";
+		// print "Customer::get(" . $customer_id . ") DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -193,6 +203,11 @@ class Customer extends MyCloudModel
 
         return $customer;
     }
+
+	/**
+	 * Create a new Customer attached to your shop.
+	 *
+	 */
 
     public function create( $apiContext = null )
     {
@@ -229,8 +244,25 @@ class Customer extends MyCloudModel
         return $customer;
     }
 
+	/**
+	 * Update this Customer.
+	 *
+	 * The ID of this Customer object must be set before calling this function.
+	 *
+	 * NOTE The update will update any fields that you have set on this Customer
+	 *      object, and will not change any fields that you have not set. In
+	 *      other words, if you set the ID and Name fields of this Customer object,
+	 *      then update() will change the name of the Customer matching this object's
+	 *      ID. The other fields in the database will remain unchanged.
+	 *
+	 */
+
     public function update( $apiContext = null )
     {
+		if ( empty($this->id) ) {
+			return new MCError( "Customer has no id. You must set the id of the customer to update." );
+		}
+
 		$customer = NULL;
         $payload = $this->toArray();
 

@@ -98,7 +98,7 @@ class MCLogger extends AbstractLogger
 					array_search($this->loggingLevel, $this->loggingLevels))
 			{
                 error_log( "[" . date($this->dateFormat) . "] " . $this->loggerName .
-					" : " . strtoupper($level) . ": " . $message . "\n", 3, $this->loggerFile );
+					" : " . strtoupper($level) . ": " . $message . PHP_EOL, 3, $this->loggerFile );
             }
         }
     }

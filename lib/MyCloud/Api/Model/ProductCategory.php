@@ -69,7 +69,7 @@ class ProductCategory extends MyCloudModel
             array(),
             $apiContext
         );
-		print "ProductCategory::all() DATA: " . $json_data . "\n";
+		// print "ProductCategory::all() DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -101,13 +101,13 @@ class ProductCategory extends MyCloudModel
 
         $payLoad = array();
         $json_data = self::executeCall(
-            "/v1/productcategories/" . $category_id,
+            "/v1/productcategories/" . self::rfc3986Encode($category_id),
             "GET",
             $payLoad,
             array(),
             $apiContext
         );
-		print "ProductCategory::get(" . $category_id . ") DATA: " . $json_data . "\n";
+		// print "ProductCategory::get(" . $category_id . ") DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -142,7 +142,7 @@ class ProductCategory extends MyCloudModel
             array(),
             $apiContext
         );
-		print "CREATE PRODUCTCATEGORY: JSON RESULT: " . $json_data . PHP_EOL;
+		// print "CREATE PRODUCTCATEGORY: JSON RESULT: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 

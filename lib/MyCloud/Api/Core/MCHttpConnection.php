@@ -179,7 +179,7 @@ class MCHttpConnection
         $result = substr( $result, $responseHeaderSize );
 
         $this->logger->debug( "Request Headers \t: " . str_replace("\r\n", ", ", $requestHeaders) );
-		$this->logger->debug( str_repeat('-', 128) . "\n" );
+		$this->logger->debug( str_repeat('-', 128) . PHP_EOL );
         $this->logger->info(  "Response Status \t: " . $httpStatus );
         $this->logger->debug( "Response Headers\t: " . str_replace("\r\n", ", ", $responseHeaders) );
 
@@ -197,14 +197,14 @@ class MCHttpConnection
             $ex = new MCConnectionException( $this->httpConfig->getUrl(), $msg, $httpStatus );
             $ex->setData( $result );
             $this->logger->error( $msg . " " . $result );
-            $this->logger->debug( "\n\n" . str_repeat('=', 128) . "\n" );
+            $this->logger->debug( PHP_EOL . PHP_EOL . str_repeat('=', 128) . PHP_EOL );
             throw $ex;
         }
 
         $this->logger->debug( ( $result && $result != '' ?
 			"Response Data \t: " . $result :
-			"No Response Body" ) . "\n\n" );
-        $this->logger->debug( str_repeat('=', 128) . "\n" );
+			"No Response Body" ) . PHP_EOL . PHP_EOL );
+        $this->logger->debug( str_repeat('=', 128) . PHP_EOL );
 
         // Return result object
         return $result;

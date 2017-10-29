@@ -205,6 +205,10 @@ class Order extends MyCloudModel
 		return $this;
 	}
 
+	/**
+	 * Get a list of all Orders attached to your shop.
+	 *
+	 */
     public static function all( $params = array(), $apiContext = null )
     {
 		$orders = NULL;
@@ -253,19 +257,23 @@ class Order extends MyCloudModel
         return $orders;
     }
 
+	/**
+	 * Get an existing Order using it's ID.
+	 *
+	 */
     public static function get( $orderId, $apiContext = null )
     {
 		$order = NULL;
 
         $payLoad = array();
         $json_data = self::executeCall(
-            "/v1/orders/" . $orderId,
+            "/v1/orders/" . self::rfc3986Encode($orderId),
             "GET",
             $payLoad,
             array(),
             $apiContext
         );
-		// print "Order::get(" . $orderId . ") DATA: " . $json_data . "\n";
+		// print "Order::get(" . $orderId . ") DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -287,8 +295,32 @@ class Order extends MyCloudModel
         return $order;
     }
 
-	// UNDONE The client MUST be able to set the Order's status!!!
-	//        Otherwise, how can they say the Order is APPROVED?!
+	/**
+	 * Create a new Order.
+	 *
+	 * The ID of this Order object will be ignored by this function.
+	 *
+	 * NOTE
+	 * The create will store any fields that you have set on this Order
+	 * object, and will not store any fields that you have not set. Any
+	 * fields not set will get appropriate default values.
+	 *
+	 * NOTE
+	 * A Customer can be attached to this Order with setCustomer().
+	 * You only need to set the ID of the Customer object passed to setCustomer().
+	 * The Customer must alreay exist in the datbase - a new one will NOT be created
+	 * for you.
+	 *
+	 * NOTE
+	 * A DeliveryMode can be assigned to this Order with setDeliveryMode().
+	 * You only need to set the ID of the DeliveryMode object passed to setDeliveryMode().
+	 * The DeliveryMode must alreay exist in the database - a new one will NOT be created
+	 * for you.
+	 *
+	 * NOTE
+	 * Only three images can be attached to an order at any one time.
+	 *
+	 */
 
     public function create( $apiContext = null )
     {
@@ -348,8 +380,46 @@ class Order extends MyCloudModel
         return $order;
     }
 
+	/**
+	 * Update this Order.
+	 *
+	 * The ID of this Order object must be set before calling this function.
+	 *
+	 * NOTE
+	 * The update will update any fields that you have set on this Order
+	 * object, and will not change any fields that you have not set. In
+	 * other words, if you set the ID and status fields of this Order object,
+	 * then update() will change the status of the Order matching this object's
+	 * ID. The other fields in the database will remain unchanged.
+	 *
+	 * NOTE
+	 * The Customer attached to this Order can be changed with setCustomer().
+	 * You only need to set the ID of the Customer object passed to setCustomer().
+	 * The Customer must alreay exist in the datbase - a new one will NOT be created
+	 * for you.
+	 *
+	 * NOTE
+	 * The DeliveryMode assigned to this Order can be changed with setDeliveryMode().
+	 * You only need to set the ID of the DeliveryMode object passed to setDeliveryMode().
+	 * The DeliveryMode must alreay exist in the database - a new one will NOT be created
+	 * for you.
+	 *
+	 * NOTE
+	 * Order image attachment updates check the name of existing attachments.
+	 * If the name of the update attachment matches an existing attachment, then
+	 * the existing attachment's image will be replaced by the update image. If
+	 * no existing attachment name matches the update attachment name, then the
+	 * update will be attached as a new attachment. Only three images can be
+	 * attached to an order at any one time.
+	 *
+	 */
+
     public function update( $apiContext = null )
     {
+		if ( empty($this->id) ) {
+			return new MCError( "Order has no id. You must set the id of the order to update." );
+		}
+
 		$order = NULL;
         $payload = $this->toArray();
 

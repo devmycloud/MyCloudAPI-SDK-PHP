@@ -119,12 +119,14 @@ class MyCloudModel
             }
         }
 
+		// TGE This case is not needed by our design
+		//
         // If the array is empty, which means an empty object,
         // we need to convert that array to a StdClass object
 		// in order to be able to properly construct a JSON String.
-        if ( sizeof($result) <= 0 ) {
-            $result = new MyCloudModel();
-        }
+        // if ( sizeof($result) <= 0 ) {
+        //    $result = new MyCloudModel();
+        // }
 
         return $result;
     }
@@ -236,6 +238,37 @@ class MyCloudModel
 				$this->assignValue( $k, $v );
 			}
 		}
+	}
+
+	// WARNING!!!!
+	// str_replace() is EVIL. It processes the search array
+	// from 0 to count-1 NOT over the original string, but over
+	// the "current" string. In other words, if ' ' is replaced
+	// when '%20', BEFORE hitting '%' in the search array, then
+	// the newly replaced '%20' will become '%2520'!!! Thus, we
+	// MUST put '%' as the FIRST entry in the search array, as
+	// it is the only value that is contained in the replace
+	// array values being substituted into the new string.
+	// This cost me an HOUR of confusion! Thanks PHP.
+	//
+	protected static function rfc3986Encode( $string ) {
+		$search = array(
+			'%', '!', '*', "'",
+			"(", ")", ";", ":",
+			"@", "&", "=", "+",
+			"$", ",", "/", "?",
+			" ", "#", "[", "]"
+		);
+
+		$replace = array(
+			'%25', '%21', '%2A', '%27',
+			'%28', '%29', '%3B', '%3A',
+			'%40', '%26', '%3D', '%2B',
+			'%24', '%2C', '%2F', '%3F',
+			'%20', '%23', '%5B', '%5D'
+		);
+
+		return str_replace( $search, $replace, $string );
 	}
 
     /**

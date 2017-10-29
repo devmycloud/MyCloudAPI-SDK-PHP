@@ -2,7 +2,9 @@
 
 namespace MyCloud\Api\Model;
 
+use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Core\MyCloudModel;
+use MyCloud\Api\Log\MCLoggingManager;
 
 /**
  * Class Product
@@ -13,6 +15,11 @@ use MyCloud\Api\Core\MyCloudModel;
  */
 class DeliveryMode extends MyCloudModel
 {
+
+	/**
+	 * Get all DeliveryModes available to your shop.
+	 *
+	 */
 
     public static function all( $params = array(), $apiContext = null )
     {
@@ -35,7 +42,7 @@ class DeliveryMode extends MyCloudModel
             array(),
             $apiContext
         );
-		// print "DeliveryMode::all() DATA: " . $json_data . "\n";
+		// print "DeliveryMode::all() DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -59,6 +66,49 @@ class DeliveryMode extends MyCloudModel
 		}
 
         return $modes;
+    }
+
+	/**
+	 * Get a DeliveryMode based on it's ID.
+	 *
+	 * NOTE The DeliveryMode ID can be any of the following:
+	 *   1) integer ID of DeliveryMode
+	 *   2) name of DeliveryMode
+	 *   3) code of DeliveryMode
+	 */
+
+    public static function get( $delivery_mode_id, $apiContext = null )
+    {
+		$delivery_mode = NULL;
+
+        $payLoad = array();
+
+        $json_data = self::executeCall(
+            "/v1/deliverymodes/" . self::rfc3986Encode($delivery_mode_id),
+            "GET",
+            $payLoad,
+            array(),
+            $apiContext
+        );
+
+		$result = json_decode( $json_data, true );
+
+		if ( $result['success'] ) {
+			if ( isset($result['data']) && is_array($result['data']) ) {
+				$delivery_mode = new DeliveryMode();
+				$delivery_mode->fromArray( $result['data'] );
+			} else {
+				$delivery_mode = new MCError( 'API Returned invalid DeliveryMode data' );
+				MCLoggingManager::getInstance(__CLASS__)
+					->error( "DeliveryMode data not array: " . print_r($result['data']) );
+			}
+		} else {
+			$delivery_mode = new MCError( $result['message'] );
+			MCLoggingManager::getInstance(__CLASS__)
+				->error( "Failed getting DeliveryMode[" . $delivery_mode_id . "]: " . $result['message'] );
+		}
+
+        return $delivery_mode;
     }
 
 	public function fromArray( $data )

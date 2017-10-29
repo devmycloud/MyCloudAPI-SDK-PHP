@@ -8,10 +8,12 @@ use MyCloud\Api\Core\MCError;
 use \MyCloud\Api\Model\DeliveryMode;
 
 try {
-	$delivery_modes = DeliveryMode::all( array(), null );
+	$delivery_mode = DeliveryMode::get( $argv[1] );
 
-	print "Retrieved " . count($delivery_modes) . " delivery modes." . PHP_EOL;
-	foreach ( $delivery_modes as $delivery_mode ) {
+	if ( $delivery_mode instanceof MCError ) {
+		print "ERROR retrieving delivery mode:" . PHP_EOL;
+		print "      " . $delivery_mode->getMessage() . PHP_EOL;
+	} else {
 		print_delivery_mode( "DeliveryMode", $delivery_mode );
 	}
 } catch ( Exception $ex ) {

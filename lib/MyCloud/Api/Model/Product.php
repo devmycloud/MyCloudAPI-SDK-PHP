@@ -143,7 +143,7 @@ class Product extends MyCloudModel
             array(),
             $apiContext
         );
-		// print "Product::all() DATA: " . $json_data . "\n";
+		// print "Product::all() DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -175,13 +175,13 @@ class Product extends MyCloudModel
 
         $payLoad = array();
         $json_data = self::executeCall(
-            "/v1/products/" . $product_id,
+            "/v1/products/" . self::rfc3986Encode($product_id),
             "GET",
             $payLoad,
             array(),
             $apiContext
         );
-		// print "Product::get(" . $product_id . ") DATA: " . $json_data . "\n";
+		// print "Product::get(" . $product_id . ") DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -254,6 +254,10 @@ class Product extends MyCloudModel
 
     public function update( $apiContext = null )
     {
+		if ( empty($this->id) ) {
+			return new MCError( "Product has no id. You must set the id of the product to update." );
+		}
+
 		$product = NULL;
         $payload = $this->toArray();
 

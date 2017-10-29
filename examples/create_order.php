@@ -4,6 +4,7 @@ define('MCAPI_CONFIG_PATH', '.');
 require 'bootstrap.php';
 require 'printers.php';
 
+use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\Customer;
 use MyCloud\Api\Model\DeliveryMode;
 use MyCloud\Api\Model\Order;
