@@ -1,5 +1,7 @@
 <?php
-
+//
+// Provide common printing functions for all models
+//
 function print_category( $title, $category ) {
 	print $title . "[" . $category->id . "]" . PHP_EOL;
 	print "   shopId: " . $category->shop_id . PHP_EOL;
@@ -42,8 +44,20 @@ function print_order( $title, $order ) {
 	print "      PostCode: " . $order->postcode . PHP_EOL;
 	print "      Phone # " . $order->phone_number . PHP_EOL;
 
+	if ( empty($order->attachments) ) {
+		print "   HAS NO Attachments" . PHP_EOL;
+	} else {
+		print "   Attachments:" . PHP_EOL;
+		foreach ( $order->attachments as $idx => $attachment ) {
+			print "      [" . ($idx + 1) . "] Name: " . $attachment['name'] . PHP_EOL;
+			print "      [" . ($idx + 1) . "] Url: " . $attachment['url'] . PHP_EOL;
+		}
+	}
+
 	$customer = $order->getCustomer();
-	if ( ! empty($customer) ) {
+	if ( empty($customer) ) {
+		print "   HAS NO Customer" . PHP_EOL;
+	} else {
 		print "   Customer[" . $customer->id . "]" . PHP_EOL;
 		print "      Code: " . $customer->code . PHP_EOL;
 		print "      Name: " . $customer->name . PHP_EOL;
@@ -53,18 +67,16 @@ function print_order( $title, $order ) {
 		print "      Phone # " . $customer->phone_number . PHP_EOL;
 		print "      E-mail: " . $customer->email . PHP_EOL;
 		print "      Note: " . $customer->note . PHP_EOL;
-	} else {
-		print "   HAS NO Customer" . PHP_EOL;
 	}
 
 	$delivery_mode = $order->getDeliveryMode();
-	if ( ! empty($delivery_mode) ) {
+	if ( empty($delivery_mode) ) {
+		print "   HAS NO DeliveryMode" . PHP_EOL;
+	} else {
 		print "   DeliveryMode[" . $delivery_mode->id . "]" . PHP_EOL;
 		print "      Name: " . $delivery_mode->name . PHP_EOL;
 		print "      Code: " . $delivery_mode->code . PHP_EOL;
 		print "      Contact: " . $delivery_mode->contact . PHP_EOL;
-	} else {
-		print "   HAS NO DeliveryMode" . PHP_EOL;
 	}
 
 	print "   --- Order Items ------------------------" . PHP_EOL;

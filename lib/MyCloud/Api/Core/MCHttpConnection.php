@@ -262,10 +262,12 @@ class MCHttpConnection
 		$endpoint = MCConstants::REST_TEST_ENDPOINT;
 
         if ( isset($config['service.EndPoint']) ) {
+			$this->logger->debug( "getEndpoint() Using OVERRIDE mode: 'service.EndPoint'" );
             $endpoint = $config['service.EndPoint'];
         } elseif ( isset($config['mode']) ) {
             switch ( strtoupper($config['mode']) ) {
                 case 'TEST':
+					$this->logger->debug( "getEndpoint() Using TEST mode: 'service.test.EndPoint'" );
 					if ( isset($config['service.test.EndPoint']) ) {
                     	$endpoint = $config['service.test.EndPoint'];
 					} else {
@@ -274,6 +276,7 @@ class MCHttpConnection
 					}
                     break;
                 case 'LIVE':
+					$this->logger->debug( "getEndpoint() Using LIVE mode: 'service.live.EndPoint'" );
 					if ( isset($config['service.live.EndPoint']) ) {
                     	$endpoint = $config['service.live.EndPoint'];
 					} else {

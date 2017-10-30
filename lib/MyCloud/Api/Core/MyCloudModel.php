@@ -287,7 +287,6 @@ class MyCloudModel
         // Initialize the context and REST call object if not provided explicitly
         $apiContext = $apiContext ? $apiContext : new ApiContext( null );
         $config = $apiContext->getConfig();
-		$token = $apiContext->getToken();
 
 		// NOTE
 		// PHP has some serious issues with PUT and PATCH. Specifically,
@@ -306,6 +305,8 @@ class MyCloudModel
 			$payLoad['_method'] = 'PATCH';
 		}
 
+		$token = $apiContext->getToken();
+
 		if ( ! empty($token) ) {
 			$httpConfig = new MCHttpConfig( $url, $method, $config );
 			$http = new MCHttpConnection( $apiContext, $httpConfig, $token );
@@ -313,7 +314,7 @@ class MyCloudModel
 		} else {
             $ex = new MCConnectionException(
                 ($method . " " . $url),
-                "Missing necessary authentication token. Double check your api keys. See log for further clues.",
+                "Missing authentication token. Double check your api keys in the configuration.",
                 401
             );
             $ex->setData( "" );

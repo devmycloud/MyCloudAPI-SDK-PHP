@@ -2,6 +2,7 @@
 
 namespace MyCloud\Api\Core;
 
+use MyCloud\Api\Exception\MCConnectionException;
 use MyCloud\Api\Log\MCLoggingManager;
 use SimpleJWT\JWT;
 use SimpleJWT\Keys\KeySet;
@@ -63,14 +64,46 @@ class MCAuthenticator
 	{
 		$api_key = '';
 		$secret_key = '';
+		$config = $this->apiContext->getConfig();
 		$this->logger->debug( str_repeat('-', 128) );
 		$this->logger->debug( "getToken() Getting Authentication Token" );
-		$config = $this->apiContext->getConfig();
-        if ( isset($config['acct.apiKey']) ) {
-            $api_key = $config['acct.apiKey'];
+
+		$mode = 'test';
+		if ( isset($config['mode']) ) {
+			if ( strtolower($config['mode']) == 'live' ) {
+				$mode = 'live';
+			}
 		}
-        if ( isset($config['acct.secretKey']) ) {
-            $secret_key = $config['acct.secretKey'];
+
+		$this->logger->debug( "getToken() Using " . $mode . " mode." );
+
+		$apiKeyName = 'acct.' . $mode . '.apiKey';
+		$secretKeyName = 'acct.' . $mode . '.secretKey';
+        if ( isset($config[$apiKeyName]) ) {
+            $api_key = $config[$apiKeyName];
+		}
+        if ( isset($config[$secretKeyName]) ) {
+            $secret_key = $config[$secretKeyName];
+		}
+
+		if ( empty($api_key) ) {
+            $ex = new MCConnectionException(
+                'apiKey',
+                "Missing 'apiKey'. Double check your api keys in your configuration.",
+                401
+            );
+            $ex->setData( "" );
+            throw $ex;
+		}
+
+		if ( empty($secret_key) ) {
+            $ex = new MCConnectionException(
+                'secretKey',
+                "Missing 'secretKey'. Double check your api keys in your configuration.",
+                401
+            );
+            $ex->setData( "" );
+            throw $ex;
 		}
 
 		$token = NULL;

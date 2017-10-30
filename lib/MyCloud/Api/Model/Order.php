@@ -40,7 +40,7 @@ class Order extends MyCloudModel
 	
 	private $delivery_mode = NULL;
 
-	private $attachments = array();
+	// private $attachments = array();
 
 	public function getId() {
 		return $this->id;
@@ -483,27 +483,48 @@ class Order extends MyCloudModel
 	
 	public function fromArray( $data )
 	{
-		$this->assignAttributes( $data['attributes'] );
+		// FIXME The "if" statements below checking for is_array() and ! empty()
+		//       should be logging the "not" cases, as they imply errors in the data.
 
-		if ( isset($data['customer']) && is_array($data['customer']) && !empty($data['customer']) ) {
-			$customer = new Customer( $this );
-			$customer->fromArray( $data['customer'] );
-			$this->customer = $customer;
-		}
-
-		if ( isset($data['delivery_mode']) && is_array($data['delivery_mode']) && !empty($data['delivery_mode']) ) {
-			$delivery_mode = new DeliveryMode( $this );
-			$delivery_mode->fromArray( $data['delivery_mode'] );
-			$this->delivery_mode = $delivery_mode;
-		}
-
-		if ( isset($data['order_items']) && is_array($data['order_items']) ) {
-			foreach ( $data['order_items'] as $order_item_data ) {
-				$order_item = new OrderItem( $this );
-				$order_item->fromArray( $order_item_data );
-				$this->order_items[] = $order_item;
+		$this->attachments = array();
+		if ( isset($data['attachments']) ) {
+			if ( is_array($data['attachments']) && !empty($data['attachments']) ) {
+				// $this->attachments = array_merge( $data['attachments'] ); // Copies the array
+				$this->attachments = $data['attachments'];
 			}
+			unset($data['attachments']);
 		}
+
+		if ( isset($data['customer']) ) {
+			if ( is_array($data['customer']) && !empty($data['customer']) ) {
+				$customer = new Customer( $this );
+				$customer->fromArray( $data['customer'] );
+				$this->customer = $customer;
+			}
+			unset($data['customer']);
+		}
+
+		if ( isset($data['delivery_mode']) ) {
+			if ( is_array($data['delivery_mode']) && !empty($data['delivery_mode']) ) {
+				$delivery_mode = new DeliveryMode( $this );
+				$delivery_mode->fromArray( $data['delivery_mode'] );
+				$this->delivery_mode = $delivery_mode;
+			}
+			unset($data['delivery_mode']);
+		}
+
+		if ( isset($data['order_items']) ) {
+			if ( is_array($data['order_items']) ) {
+				foreach ( $data['order_items'] as $order_item_data ) {
+					$order_item = new OrderItem( $this );
+					$order_item->fromArray( $order_item_data );
+					$this->order_items[] = $order_item;
+				}
+			}
+			unset($data['order_items']);
+		}
+
+		$this->assignAttributes( $data['attributes'] );
 	}
 
 }
