@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title>MyCloud API Documentation</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+	<link href="../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github api-docs">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="index.html"><img src="../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../index.html">Home</a>
+				<a href="../readme.html">README</a>
+				<a href="../downloads/mycloud-api-sdk-php-0.7.1.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+		<div class="bread-crumb">
+			<a href="../index.html">Home</a
+				>&nbsp;&gt; <a href="index.html">API&nbsp;Documentation</a
+				>&nbsp;&gt; PHP&nbsp;SDK&nbsp;Overview
+		</div>
+
+		<h1>PHP SDK Overview</h1>
+		<p>
+			The MyCloud API PHP SDK provides a complete PHP implementation of
+			the client side the API. With the PHP SDK, you do not need to worry
+			about any of the low level details of programming with the API.
+			Connectivity, authentication, model objects, logging, and other
+			supporting code is all provided for you.
+		</p>
+		<p>
+			When working with the PHP SDK, you will work primarily with the
+			API model objects. Model objects provide everything you need to
+			work with any data related to your shop, as well as implement
+			all of the calls to the API server needed to create, get and
+			update that data.
+		</p>
+
+		<h2>Model Objects</h2>
+		<p>
+			All model objects in the PHP SDK are standard PHP classes and
+			class objects. You can work with them the same as you would
+			with any PHP class and object.
+		</p>
+
+		<h2>Model Attributes</h2>
+		<p>
+			The model objects provide <em>attributes</em>. These attributes
+			use the PHP <em>magic</em> getter/setter paradigm. This means
+			that in general you can work with the attributes as object fields.
+			Furthermore, for each attribute the class will provide a getter
+			and setter method call.
+		</p>
+		<p>
+			For example, the Customer model has a <em>name</em> attribute.
+			Thus, you can access the value of the customer name with either
+			of these programming constructs:
+			<pre>
+   $customer->name<br/>
+   $customer->getName()</pre>
+		</p>
+	</div>
+</body>
+</html>

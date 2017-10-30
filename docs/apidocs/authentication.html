@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>MyCloud API Documentation</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+	<link href="../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github api-docs">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="index.html"><img src="../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../index.html">Home</a>
+				<a href="../readme.html">README</a>
+				<a href="../downloads/mycloud-api-sdk-php-0.7.1.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+		<div class="bread-crumb">
+			<a href="../index.html">Home</a
+				>&nbsp;&gt; <a href="index.html">API&nbsp;Documentation</a
+				>&nbsp;&gt; Authentication
+		</div>
+
+		<h1>Authentication</h1>
+		<p>
+			The MyCloud API uses
+			<a href="https://jwt.io/">JSON Web Tokens (JWT)</a>
+			for authetication. This stateless authentication protocol
+			is becoming a popular standard for API's for many good
+			technical reasons. Here at MyCloud, we chose JWT because
+			it is simple to implement, requires very little overhead,
+			has many libraries available in almost every popular
+			programming language, and eliminates the need for state
+			(such as sessions and cookies), which means that it can
+			scale better.
+		</p>
+		<p>
+			If you are using the PHP SDK, you do not need to worry
+			about JWT. All of the authentication is handled for you
+			by the SDK. All you need to do is configure your API
+			keys, and you are all set to beging using the API.
+		</p>
+	</div>
+</body>
+</html>

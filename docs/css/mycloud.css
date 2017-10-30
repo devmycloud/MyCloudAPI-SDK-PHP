@@ -8,6 +8,9 @@ body,html {
 .home-page {
 }
 
+/*
+ * PAGE HEADING
+ */
 .page-heading {
 	margin: 0px;
 	background-color: #1bab84;
@@ -56,6 +59,9 @@ body,html {
 	background-color: rgba(255,255,255,0.15);
 }
 
+/*
+ * TOP LEVEL PAGES
+ */
 .home-page .page-content,
 .readme-page .page-content {
 	max-width: 990px;
@@ -75,6 +81,36 @@ body,html {
 	font-size: 14pt;
 }
 
+/*
+ * API DOC PAGES
+ */
+.api-docs .bread-crumb {
+	font-size: 10pt;
+	margin-bottom: 20px;
+}
+.api-docs .page-content {
+	max-width: 990px;
+	margin: 0px auto;
+	padding: 20px 40px;
+}
+.api-docs .page-content h1 {
+	font-size: 21pt;
+	text-align: left;
+	margin: 20px 0px;
+}
+.api-docs .page-content p {
+	font-size: 13pt;
+}
+.api-docs .page-content ul {
+}
+.api-docs .page-content ul li {
+	margin: 7px 0px 5px 0px;
+}
+
+
+/*
+ * GLOBAL
+ */
 pre {
 	padding: 10px 10px;
 	background-color: #e8e8e8;
@@ -85,12 +121,23 @@ code {
 	background-color: #e8e8e8;
 }
 
+
+@media screen and (max-width: 767px) {
+	.page-heading .heading .buttons { width: 75%; padding: 10px 0px; }
+	.page-heading .heading .buttons a {
+		width: 40%;
+		font-size: 11pt;
+		padding: 9px 10px;
+		margin: 10px 1% 0px 1%;
+	}
+}
+
 @media screen and (max-width: 540px) {
-	.page-heading .heading .buttons { width: 60%; }
+	.page-heading .heading .buttons { width: 80%; }
 	.page-heading .heading .buttons a {
 		display: block;
 		font-size: 11pt;
 		padding: 9px 15px;
-		margin: 10px 10px 0px 10px;
+		margin: 10px auto 0px auto;
 	}
 }
