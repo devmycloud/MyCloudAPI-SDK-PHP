@@ -7,6 +7,9 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\Customer;
 
+// ARGUMENTS:
+//   [1] Customer ID
+
 try {
 	$customer = Customer::get( $argv[1] );
 

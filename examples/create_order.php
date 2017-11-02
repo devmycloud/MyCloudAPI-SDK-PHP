@@ -10,6 +10,17 @@ use MyCloud\Api\Model\DeliveryMode;
 use MyCloud\Api\Model\Order;
 use MyCloud\Api\Model\Product;
 
+// ARGUMENTS:
+//   [1] Order Name
+//   [2] Order Address
+//   [3] Order Postcode
+//   [4] Order PhoneNumber
+//   [5] Order Email
+//   [6] Order Attachment Name     (e.g., 'RECEIPT')
+//   [7] Order Attachment Filename (e.g., 'ProductImage.jpg')
+//   [8] Order Attachment Filetype (e.g., 'image/jpeg')
+//   [9] Order Attachment Filepath (path to actual local file to upload)
+
 try {
 	$products = Product::all();
 	$customers = Customer::all();
@@ -17,22 +28,38 @@ try {
 
 	$createOrder = new Order();
 
-	$attachment = 'RECEIPT'; // FIXME These need to be constants.
-	$filename = 'TestReceipt.jpg';
-	$filetype = 'image/jpeg';
-	$filepath = '/Users/time/Downloads/TestReceipt.jpg';
+	$attachment = $argv[6];
+	$filename = $argv[7];
+	$filetype = $argv[8];
+	$filepath = $argv[9];
 
-
-	$createOrder->setName('Tim Endres')
-		->setPhoneNumber('+66909168068')
-		->setEmail('tim@bkbasic.com')
-		->setAddress('#5 Sukhumvit Soi 45, Wattana, Bangkok')
-		->setPostcode('10110')
-		->setCustomer( $customers[0] )
-		->setDeliveryMode( $delivery_modes[0] )
-		->addProduct( $products[0], 1, 1200 )
-		->addProduct( $products[1], 2, 900 )
+	$createOrder->setName($argv[1])
+		->setAddress($argv[2])
+		->setPostcode($argv[3])
+		->setPhoneNumber($argv[4])
+		->setEmail($argv[5])
 		->attachFile( $attachment, $filename, $filetype, $filepath );
+
+	// Only set the customer if we got a model from the API
+	if ( count($customers) > 0 ) {
+		$createOrder->setCustomer( $customers[0] );
+	}
+
+	// Only set the delivery mode if we got a model from the API
+	if ( count($delivery_modes) > 0 ) {
+		$createOrder->setDeliveryMode( $delivery_modes[0] );
+	}
+
+	// Only add products if we got models from the API
+	// NOTE addProduct() is a shortcut for adding an OrderItem.
+	//      Adding a product will create the OrderItem that ties
+	//      that product to this order.
+	if ( count($products) > 0 ) {
+		$createOrder->addProduct( $products[0], 1, 1200 )
+	}
+	if ( count($products) > 1 ) {
+		$createOrder->addProduct( $products[1], 1, 1200 )
+	}
 
 	$order = $createOrder->create();
 

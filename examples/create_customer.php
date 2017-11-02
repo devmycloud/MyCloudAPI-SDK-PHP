@@ -7,17 +7,28 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\Customer;
 
+// ARGUMENTS:
+//   [1] Customer Code
+//   [2] Customer Name
+//   [3] Customer Address
+//   [4] Customer Postcode
+//   [5] Customer PhoneNumber
+//   [6] Customer Email
+//   [7] Customer SocialId
+//   [8] Customer Note
+
 try {
 	$createCustomer = new Customer();
+	// NOTE That we do not set the ID.
 
-	$createCustomer->setCode('TESTCODE')
-		->setName('Tim Endres')
-		->setAddress('#5 Sukhumvit Soi 45, Wattana, Bangkok')
-		->setPostcode('10110')
-		->setPhoneNumber('+66909168068')
-		->setEmail('tim@bkbasic.com')
-		->setSocialId('myFaceBookName')
-		->setNote('This is a customer note.');
+	$createCustomer->setCode($argv[1])
+		->setName($argv[2])
+		->setAddress($argv[3])
+		->setPostcode($argv[4])
+		->setPhoneNumber($argv[5])
+		->setEmail($argv[6])
+		->setSocialId($argv[7])
+		->setNote($argv[8]);
 
 	$customer = $createCustomer->create();
 

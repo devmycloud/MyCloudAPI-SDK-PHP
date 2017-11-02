@@ -7,10 +7,17 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\Customer;
 
+// ARGUMENTS:
+//   [1] Customer ID
+//   [2...] Remaining arguments are of the format:
+//
+//             attribute_name=attribute_value
+//
+//          For example: 'name=Tom Cruise'
+
 try {
 	$argcnt = count($argv);
 	$updateCustomer = new Customer();
-
 	$updateCustomer->id = $argv[1];
 
 	$argidx = 2;

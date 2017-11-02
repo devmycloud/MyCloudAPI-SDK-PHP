@@ -7,10 +7,13 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\ProductCategory;
 
+// ARGUMENTS:
+//   [1] Category Name
+
 try {
 	$createCategory = new ProductCategory();
 
-	$createCategory->setName('My Category');
+	$createCategory->setName($argv[1]);
 
 	$category = $createCategory->create();
 

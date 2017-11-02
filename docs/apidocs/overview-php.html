@@ -19,7 +19,7 @@
 				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
 				<a href="../index.html">Home</a>
 				<a href="../readme.html">README</a>
-				<a href="../downloads/mycloud-api-sdk-php-0.7.1.zip">Binary Distribution</a>
+				<a href="../downloads/mycloud-api-sdk-php-0.7.2.zip">Binary Distribution</a>
 			</div>
 		</div>
 	</div>
@@ -69,6 +69,51 @@
 			<pre>
    $customer->name<br/>
    $customer->getName()</pre>
+		</p>
+
+		<h2>API Requests</h2>
+		<p>
+			API requests typically return model objects. You can then work
+			with the objects the same as any PHP object. However, there are
+			two cases where a model is not returned: errors and exceptions.
+		</p>
+		<p>
+			If an error occurs in an API request that does not cause the
+			API to fail processing the request, you will get back an
+			<strong>MCError</strong> object instead of a model object.
+			Thus, for every API call that you make that expects an object
+			to be returned, you must first check to see if that object is
+			an instance of class MCError. If it is, the object will contain
+			information regarding the error that occurred.
+		</p>
+		<p>
+			An example of handling both of these cases would look similar
+			to this:
+		</p>
+			<pre>
+try {
+	$category = ProductCategory::get( $argv[1] );
+
+	if ( $category instanceof MCError ) {
+		print "ERROR retrieving ProductCategory:" . PHP_EOL;
+		print "      " . $category-&gt;getMessage() . PHP_EOL;
+	} else {
+		print_category( "ProductCategory", $category );
+	}
+} catch ( Exception $ex ) {
+	print "EXCEPTION: " . $ex-&gt;getMessage() . PHP_EOL;
+}
+</pre>
+		<p>
+			You can see that we first check to see if the returned
+			object is an <em>instanceof</em> <strong>MCError</strong>.
+			If it is not, then the object returned is one of the API
+			models ready for you to use. We also wrap every SDK call
+			inside of a <code>try { ... } catch ( Exception $ex ) { ... }</code>
+			to make sure we catch any exceptions that may be thrown
+			by the SDK code. Exceptions will contain further information
+			about the error, which you can obtain with the getMessage()
+			function.
 		</p>
 	</div>
 </body>

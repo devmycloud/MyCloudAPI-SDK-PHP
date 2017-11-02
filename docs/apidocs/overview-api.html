@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>MyCloud API Documentation</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+	<link href="../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github api-docs">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="index.html"><img src="../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../index.html">Home</a>
+				<a href="../readme.html">README</a>
+				<a href="../downloads/mycloud-api-sdk-php-0.7.2.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+		<div class="bread-crumb">
+			<a href="../index.html">Home</a
+				>&nbsp;&gt; <a href="index.html">API&nbsp;Documentation</a
+				>&nbsp;&gt; API&nbsp;Overview
+		</div>
+
+		<h1>API Overview</h1>
+		<p>
+			The MyCloud API is a RESTful API. It is built on top of the
+			HTTP protocol to implement communications with the API server.
+		</p>
+
+		<h2>API Requests</h2>
+		<p>
+			API requests send their data using the multipart/form-data
+			specification defined by
+			<a href="https://tools.ietf.org/html/rfc2388">RFC2388</a>,
+			which is the same standard that web browsers use to submit
+			form data when you submit an HTML &lt;FORM&gt;. This standard
+			was chosen because it is supported by virtually every modern
+			programming language, and has many online tools for simulating
+			requests with the data format.
+		</p>
+
+		<h2>API Responses</h2>
+		<p>
+			API responses send their data using the JSON
+			(JavaScript Object Notation) standard defined by
+			<a href="https://tools.ietf.org/html/rfc7159">RFC7159</a>.
+			This standard was chosen because it is inherently suitable
+			to represent object structures, is supported by virtually
+			every modern programming language, and it easily read in
+			it's native form.
+		</p>
+
+		<h2>PATCH Verb Special Case</h2>
+		<p>
+			Standard HTTP defines PUT and PATCH verbs. Specifically,
+			PATCH is used to <em>update</em> a model (database record).
+			The MyCloud API attempts to stick to the RESTful standard
+			as much as possible. Unfortunately, the platform that the
+			API was developed on is not capable of properly handling
+			the data submitted by the PATCH verb. 
+			Because of this limitation, all PATCH
+			requests must actually use the POST verb, and set a special
+			parameter named "_method" with the value "PATCH". This special
+			parameter is interpretted by the API platform, which then
+			properly routes the request to the code that handles the
+			PATCH verb processing
+		</p>
+	</div>
+</body>
+</html>

@@ -57,9 +57,9 @@ class MyCloudModel
     public function __get($key)
     {
         if ( $this->__isset($key) ) {
-            return $this->_propMap[$key];
+			return $this->_propMap[$key];
         }
-        return null;
+        return NULL;
     }
 
     /**
@@ -296,6 +296,13 @@ class MyCloudModel
 		// is a game-stopper, so it really does not matter does it?). Thus,
 		// we are using the Laravel (and Rails actually) "cheat" of using
 		// the POST method with a parameter to indicate the "real" method.
+		//
+		// SEE: https://laravel.io/forum/02-13-2014-i-can-not-get-inputs-from-a-putpatch-request
+		// And the note that says:
+		//    The problem looks like lies in Symfony it can't parse the data if it's multipart/form-data
+		// This is a MAJOR problem with properly supporting the correct HTTP verbs!
+		// Apparently this is _still_ (Nov 1, 2017) a problem.
+		// Not sure if we can justify fixing this shit!
 
 		if ( $method == 'PUT' ) {
 			$method = 'POST';

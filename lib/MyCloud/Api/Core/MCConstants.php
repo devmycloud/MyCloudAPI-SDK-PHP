@@ -12,7 +12,7 @@ class MCConstants
 {
 
     const SDK_NAME = 'MyCloud-PHP-SDK';
-    const SDK_VERSION = '0.7.1';
+    const SDK_VERSION = '0.7.2';
 
     const REST_TEST_ENDPOINT = "http://apitest.mycloudfulfillment.com/api";
     const REST_LIVE_ENDPOINT = "https://api.mycloudfulfillment.com/api";

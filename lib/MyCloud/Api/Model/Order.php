@@ -32,15 +32,13 @@ class Order extends MyCloudModel
 	const API_STATUS_DELIVERED   = 'DELIVERED';
 	const API_STATUS_UNKNOWN     = 'UNKNOWN';
 
-	private $shop = NULL;
-
-	private $order_items = array();
+	public $order_items = array();
 	
-	private $customer = NULL;
+	public $customer = NULL;
 	
-	private $delivery_mode = NULL;
+	public $delivery_mode = NULL;
 
-	// private $attachments = array();
+	public $attachments = array();
 
 	public function getId() {
 		return $this->id;
@@ -112,14 +110,6 @@ class Order extends MyCloudModel
 	public function setWeight($weight) {
 		$this->weight = $weight;
 		return $this;
-	}
-
-	public function getShop()
-	{
-		if ( $this->shop == NULL ) {
-			// FIXME
-		}
-		return $this->shop;
 	}
 
 	public function getOrderItems()
@@ -195,6 +185,9 @@ class Order extends MyCloudModel
 
 	public function attachFile( $attachment, $filename, $filetype, $filepath )
 	{
+		// if ( ! isset($this->_params['attachments']) ) {
+		// 	$this->attachments = array();
+		// }
 		$this->attachments[] =
 			array(
 				'attachment' => $attachment,
@@ -442,7 +435,7 @@ class Order extends MyCloudModel
 		$index  = 0;
 		foreach ( $this->attachments as $attach ) {
 			$payload['attach_name[' . $index . ']'] = $attach['attachment'];
-			$payload['attach_file[' . $index . ']'] =
+			$payload['attach_file[' . $attach['attachment'] . ']'] =
 				new \CurlFile(
 					$attach['filepath'],
 					$attach['filetype'],
@@ -459,7 +452,7 @@ class Order extends MyCloudModel
             array(),
             $apiContext
         );
-		// print "CREATE ORDER: JSON RESULT: " . $json_data . PHP_EOL;
+		print "CREATE ORDER: JSON RESULT: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -480,7 +473,7 @@ class Order extends MyCloudModel
 
         return $order;
     }
-	
+
 	public function fromArray( $data )
 	{
 		// FIXME The "if" statements below checking for is_array() and ! empty()
@@ -489,7 +482,6 @@ class Order extends MyCloudModel
 		$this->attachments = array();
 		if ( isset($data['attachments']) ) {
 			if ( is_array($data['attachments']) && !empty($data['attachments']) ) {
-				// $this->attachments = array_merge( $data['attachments'] ); // Copies the array
 				$this->attachments = $data['attachments'];
 			}
 			unset($data['attachments']);

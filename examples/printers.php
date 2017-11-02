@@ -4,14 +4,12 @@
 //
 function print_category( $title, $category ) {
 	print $title . "[" . $category->id . "]" . PHP_EOL;
-	print "   shopId: " . $category->shop_id . PHP_EOL;
 	print "   Code: " . $category->code . PHP_EOL;
 	print "   Name: " . $category->name . PHP_EOL;
 }
 
 function print_customer( $title, $customer ) {
 	print $title . "[" . $customer->id . "]" . PHP_EOL;
-	print "   shopId: " . $customer->shop_id . PHP_EOL;
 	print "   Code: " . $customer->code . PHP_EOL;
 	print "   Name: " . $customer->name . PHP_EOL;
 	print "   Address: " . $customer->address . PHP_EOL;
@@ -24,7 +22,6 @@ function print_customer( $title, $customer ) {
 
 function print_delivery_mode( $title, $delivery_mode ) {
 	print $title . "[" . $delivery_mode->id . "]" . PHP_EOL;
-	print "   shopId " . $delivery_mode->shop_id . PHP_EOL;
 	print "   Delivery Code " . $delivery_mode->delivery_code . PHP_EOL;
 	print "   Name " . $delivery_mode->name . PHP_EOL;
 	print "   Contact " . $delivery_mode->contact . PHP_EOL;
@@ -34,7 +31,6 @@ function print_delivery_mode( $title, $delivery_mode ) {
 function print_order( $title, $order ) {
 	print $title . "[" . $order->id . "]" . PHP_EOL;
 	print "   status " . $order->status . PHP_EOL;
-	print "   shopId " . $order->shop_id . PHP_EOL;
 	print "   mcNumber " . $order->mc_number . PHP_EOL;
 	print "   Order # " . $order->order_number . PHP_EOL;
 	print "   Weight " . $order->weight . PHP_EOL;
@@ -99,7 +95,6 @@ function print_order( $title, $order ) {
 
 function print_product( $title, $product ) {
 	print $title . "[" . $product->id . "]" . PHP_EOL;
-	print "   shopId: " . $product->shop_id . PHP_EOL;
 	print "   SKU: " . $product->sku . PHP_EOL;
 	print "   Name: " . $product->name . PHP_EOL;
 	print "   Description: " . $product->description . PHP_EOL;
@@ -109,4 +104,17 @@ function print_product( $title, $product ) {
 	print "   ClientReference[2]: " . $product->getClientReference(1) . PHP_EOL;
 	print "   ClientReference[3]: " . $product->getClientReference(2) . PHP_EOL;
 	print "   ClientReference[4]: " . $product->getClientReference(3) . PHP_EOL;
+}
+
+function print_shop( $title, $shop ) {
+	print $title . PHP_EOL;
+	print "   Available: " . $shop->available . PHP_EOL;
+	print "   Code: " . $shop->code . PHP_EOL;
+	print "   Name: " . $shop->name . PHP_EOL;
+	print "   Logo: " . $shop->logo_url . PHP_EOL;
+	print "   Address: " . $shop->address . PHP_EOL;
+	print "   Postcode: " . $shop->postcode . PHP_EOL;
+	print "   Contact: " . $shop->contact_name . PHP_EOL;
+	print "   Phone # " . $shop->phone_number . PHP_EOL;
+	print "   E-mail: " . $shop->email . PHP_EOL;
 }

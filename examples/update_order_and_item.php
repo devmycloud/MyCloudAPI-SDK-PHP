@@ -9,12 +9,22 @@ use MyCloud\Api\Model\Order;
 use MyCloud\Api\Model\OrderItem;
 use MyCloud\Api\Model\Product;
 
+// ARGUMENTS:
+//   [1] Order ID
+//   [2] Order Status
+//   [3] OrderItem ID
+//   [4] OrderItem Quantity
+//   [5] OrderItem Price
+
 try {
 	$updateOrder = new Order();
 	$updateOrder->setId($argv[1]);
 	$updateOrder->setStatus($argv[2]);
 
-	$updateItem = new OrderItem($updateOrder, NULL, $argv[4], $argv[5] );
+	// NOTE That we set the Product parameter to NULL, because we do not
+	//      want to update the Product model. We only want to set the
+	//      OrderItem's quantity and price.
+	$updateItem = new OrderItem( $updateOrder, NULL, $argv[4], $argv[5] );
 	$updateItem->setId($argv[3]);
 
 	$updateOrder->addOrderItem( $updateItem );

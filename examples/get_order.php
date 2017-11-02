@@ -7,6 +7,9 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\Order;
 
+// ARGUMENTS:
+//   [1] Order ID
+
 try {
 	$order = Order::get( $argv[1] );
 

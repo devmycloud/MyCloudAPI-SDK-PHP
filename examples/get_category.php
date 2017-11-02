@@ -7,6 +7,9 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\ProductCategory;
 
+// ARGUMENTS:
+//   [1] ProductCategory ID
+
 try {
 	$category = ProductCategory::get( $argv[1] );
 

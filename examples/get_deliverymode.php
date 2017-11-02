@@ -7,6 +7,9 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use \MyCloud\Api\Model\DeliveryMode;
 
+// ARGUMENTS:
+//   [1] DeliveryMode ID
+
 try {
 	$delivery_mode = DeliveryMode::get( $argv[1] );
 

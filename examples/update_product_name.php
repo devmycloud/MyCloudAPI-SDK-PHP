@@ -7,6 +7,10 @@ require 'printers.php';
 use MyCloud\Api\Core\MCError;
 use MyCloud\Api\Model\Product;
 
+// ARGUMENTS:
+//   [1] Product ID
+//   [1] Product Name
+
 try {
 	$updateProduct = new Product();
 	$updateProduct->id = $argv[1];
