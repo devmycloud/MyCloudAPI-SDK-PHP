@@ -153,7 +153,7 @@ class MCAuthenticator
 			$http = new MCHttpConnection( $this->apiContext, $httpConfig, NULL );
 			$parameters = array( 'apikey' => $api_key, 'secretkey' => $secret_key );
 
-			// FIXME Need to try exception here?
+			// FIXME Need to try and catch exception here
 			$json_data = $http->execute( $path, $method, $parameters, NULL );
 
 			$this->logger->debug( "Returned token data: " . $json_data );

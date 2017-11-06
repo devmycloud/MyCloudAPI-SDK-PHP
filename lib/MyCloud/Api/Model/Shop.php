@@ -87,7 +87,10 @@ class Shop extends MyCloudModel
 	}
 
 	/**
-	 * Get all Customers attached to your shop.
+	 * Get all shops attached to your account.
+	 * Note that currently MyCloud supports only a single Shop
+	 * per client account, so this method will return a single
+	 * shop in the resulting array.
 	 *
 	 */
 
@@ -141,7 +144,9 @@ class Shop extends MyCloudModel
     }
 
 	/**
-	 * Get the Shop.
+	 * Get a Shop by it's ID.
+	 * Note that if you request a Shop that is not attached
+	 * to your account, you will get a "not located" error.
 	 *
 	 */
 

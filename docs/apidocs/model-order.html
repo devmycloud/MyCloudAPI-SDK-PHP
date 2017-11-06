@@ -33,8 +33,431 @@
 
 		<h1>Order Model</h1>
 		<p>
-			The Order model represents an order placed with your shop.
+			The Order model represents an order placed with your shop. Orders
+			consist of OrderItems, which are the Products that are attached
+			to the order. An order can have a Customer attached to it, but
+			this is not required. And order must have a DeliveryMode attached
+			to it to select the method of shipment. The payment attributes
+			are provided for the customer to indicate to the shop when and how
+			payment was made so the shop can verify payment. If payment was
+			received through an online payment system, the shop may store
+			that information in the order if they want.
 		</p>
+
+		<h2>Model Attributes</h2>
+		<p>
+			Model attributes can be accessed two ways:
+		</p>
+			<ul>
+				<li>Direct reference [ <code>$order->mc_number</code> ]
+				<li>Getter/Setter [ <code>$order->getMcNumber()</code> ]
+			</ul>
+		<p>
+			Model setters always return the object itself, which allows you
+			to <em>chain</em> setter calls:
+		</p>
+			<pre>
+	$order->setId(27)
+		->setName('Mr. Buyer')
+		->setOrderNumber('Shop-00081')
+		->setAddress('49 Buyer Lane')
+		->setPostcode('10110');
+</pre>
+
+		<dl class="model-attributes">
+			<dt>id</dt>
+			<dd>
+				Unique numeric ID of the order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getId()<br/>
+				object setId( integer )
+				</div>
+			</dd>
+			<dt>mc_number</dt>
+			<dd>
+				The MyCloud order identification number. This unique
+				number of used internally by MyCloud to identify any
+				order, and is the preferred way to identify orders.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getMcNumber()<br/>
+				object setMcNumber( integer )
+				</div>
+			</dd>
+			<dt>customer_id</dt>
+			<dd>
+				The unique numeric ID of the customer attached to this order.
+				If the ID is NULL, then no customer has been attached
+				to this order. This field is only returned by a call to the
+				API to retrieve an order. This field should never be set
+				by the client's code. If you want to set the customer for
+				a new order, or to update an existing order, then you should
+				use <code>setCustomer()</code> with a Customer object.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getCustomerId()<br/>
+				</div>
+			</dd>
+			<dt>delivery_mode_id</dt>
+			<dd>
+				The numeric ID of the delivery mode assigned to this order.
+				If the ID is NULL, then no delivery mode has been assigned
+				to this order. This field is only returned by a call to the
+				API to retrieve an order. This field should never be set
+				by the client's code. If you want to set the delivery mode for
+				a new order, or to update an existing order, then you should
+				use <code>setDeliveryMode()</code> with a DeliveryMode object.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getDeliveryModeId()<br/>
+				</div>
+			</dd>
+			<dt>billing_title</dt>
+			<dd>
+				The billing title of the order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getBillingTitle()<br/>
+				object setBillingTitle( string )
+				</div>
+			</dd>
+			<dt>customer_ref</dt>
+			<dd>
+				The customer reference for this order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getCustomerReference()<br/>
+				object setCustomerReference( string )
+				</div>
+			</dd>
+			<dt>order_number</dt>
+			<dd>
+				The customer assigned order number for this order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getOrderNumber()<br/>
+				object setOrderNumber( string )
+				</div>
+			</dd>
+			<dt>create_date</dt>
+			<dd>
+				The date this order was created (YYYY-mm-dd).
+				This field is read-only. It will be ignored when you
+				create a new order, or when you update an order. The
+				date will be timestamped by the API server when a new
+				order is created.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getCreateDate()<br/>
+				object setCreateDate( string )
+				</div>
+			</dd>
+			<dt>delivery_date</dt>
+			<dd>
+				The delivery date of this order (YYYY-mm-dd).
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getDeliveryDate()<br/>
+				object setDeliveryDate( string )
+				</div>
+			</dd>
+			<dt>email</dt>
+			<dd>
+				The email address of the person the order is being shipped to.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getEmail()<br/>
+				object setEmail( string )
+				</div>
+			</dd>
+			<dt>phone_number</dt>
+			<dd>
+				The phone number of the person the order is being shipped to.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getPhoneNumber()<br/>
+				object setPhoneNumber( string )
+				</div>
+			</dd>
+			<dt>name</dt>
+			<dd>
+				The name address of the person the order is being shipped to.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getName()<br/>
+				object setName( string )
+				</div>
+			</dd>
+			<dt>address</dt>
+			<dd>
+				The shipping address for this order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getAddress()<br/>
+				object setAddress( string )
+				</div>
+			</dd>
+			<dt>postcode</dt>
+			<dd>
+				The postal code of the shipping address of the order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getPostcode()<br/>
+				object setPostcode( string )
+				</div>
+			</dd>
+			<dt>note</dt>
+			<dd>
+				The note the shop has added to the order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getNote()<br/>
+				object setNote( string )
+				</div>
+			</dd>
+			<dt>total_price</dt>
+			<dd>
+				The total price for this order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getTotalPrice()<br/>
+				object setTotalPrice( integer )
+				</div>
+			</dd>
+			<dt>payment_amount</dt>
+			<dd>
+				The amount the customer claims to have paid for this order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getPaymentAmount()<br/>
+				object setPaymentAmount( integer )
+				</div>
+			</dd>
+			<dt>payment_date</dt>
+			<dd>
+				The date the customer claims to have paid for this order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getPaymentDate()<br/>
+				object setPaymentDate( string )
+				</div>
+			</dd>
+			<dt>payment_time</dt>
+			<dd>
+				The time the customer claims to have paid for this order.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getPaymentTime()<br/>
+				object setPaymentTime( string )
+				</div>
+			</dd>
+			<dt>weight</dt>
+			<dd>
+				The weight of this order as shipped (Kg).
+				<h5>Methods:</h5>
+				<div class="methods">
+				float getWeight()<br/>
+				object setWeight( float )
+				</div>
+			</dd>
+			<dt>urgent</dt>
+			<dd>
+				Whether or not this order is market as "Urgent" (TRUE or FALSE).
+				<h5>Methods:</h5>
+				<div class="methods">
+				boolean getUrgent()<br/>
+				object setUrgent( boolean )
+				</div>
+			</dd>
+		</dl>
+
+		<h2>Model Objects</h2>
+		<dl class="model-attributes">
+			<dt>Attachments</dt>
+			<dd>
+				<p>
+				Files that are attached to this order.
+				</p>
+				<p>
+				Method getAttachments() returns
+				an array of the order's attachments when an order is retrieved from
+				the API. Each element of the array is an associative array containing
+				a 'name' and a 'url'. The url can be used to retrieve the attachment
+				using a standard HTTP request.
+				</p>
+				<p>
+				Method attachFile() is used to attach a new file to an order when
+				creating or updating an order. 'name' is the attachment name used
+				to refer to the attachment during processing of the order. The name
+				must be one that MyCloud will understand, so be sure it is one that
+				is agreed upon with the MyCloud staff. 'filename' is any name you
+				wish to give the file, and is typically the attachment's local file
+				name. 'filetype' indicates what type of file the attachment is, and
+				should typically be a stadard MIME type such as 'image/jpeg' or
+				'application/pdf'. 'filepath' is the pathname to the local file on
+				the computer that is attaching the file to the order. The filepath
+				must be sufficient for the code to locate the file during processing,
+				so a full path is recommended. Returns the Order object.
+				</p>
+				<h5>Methods:</h5>
+				<div class="methods">
+				array getAttachments()<br/>
+				object attachFile( string name, string filename, string filetype, string filepath )
+				</div>
+			</dd>
+			<dt>Customer</dt>
+			<dd>
+				<p>
+				A shop customer that is attached to the order.
+				</p>
+				<p>
+				Method getCustomer() returns the Customer that is attached to the
+				order, or NULL if no customer is attached to the order. The Customer
+				object <strong>must</strong> be obtained from the API,
+				<strong>not</strong> created by the client's code.
+				</p>
+				<p>
+				Method setCustomer() is used to attach a new customer to an order when
+				creating or updating an order. Returns the Order object.
+				</p>
+				<h5>Methods:</h5>
+				<div class="methods">
+				object getCustomer()<br/>
+				object setCustomer( object Customer )
+				</div>
+			</dd>
+			<dt>DeliveryMode</dt>
+			<dd>
+				<p>
+				The delivery mode to be used to ship the order.
+				</p>
+				<p>
+				Method getDeliveryMode() returns the DeliveryMode that is attached to the
+				order, or NULL if no delivery mode is defined for the order. The DeliveryMode
+				object <strong>must</strong> be obtained from the API,
+				<strong>not</strong> created by the client's code.
+				</p>
+				<p>
+				Method setDeliveryMode() is used to define the delivery mode for the order when
+				creating or updating an order. Returns the Order object.
+				</p>
+				<h5>Methods:</h5>
+				<div class="methods">
+				object getDeliveryMode()<br/>
+				object setDeliveryMode( object DeliveryMode )
+				</div>
+			</dd>
+			<dt>OrderItems</dt>
+			<dd>
+				<p>
+				The order items are the products that are being purchased with this order.
+				An OrderItem points to a Product and defines the number of that product
+				being purchased (quantity) and the price being paid for that product (price).
+				When you retrieve an order from the API, the order's items will be attached
+				to the Order object for you. When you are creating a new order, or updating
+				an existing order, you will provide the OrderItems to be added to the order.
+				</p>
+				<p>
+				Order defines several methods that allow you to attach order items to your
+				order when you are creating or updating an order:
+				</p>
+				<p>
+				Method addOrderItem() allows you to add an order item using an OrderItem
+				object that you create.
+				</p>
+				<p>
+				Method addProduct() allows you to create a new
+				order item using a Product object that you have retrieved from the API. It
+				will create the new OrderItem using the Product object's id. You can get
+				this Product object using the API, or you can create a new Product object
+				locally, in which case you only need to provide the id when creating the
+				object.
+				</p>
+				<p>
+				Method addProductBytId() is the same as addProduct(), but you only
+				need the id of the product. This allows you to keep a list of product
+				ids on your system, so you do not need to retrieve them from the API
+				each time you want to create a new order.
+				</p>
+				<h5>Methods:</h5>
+				<div class="methods">
+				array getOrderItems()<br/>
+				object addOrderItem( object OrderItem )
+				object addProduct( object Product )
+				object addProductById( integer )
+				</div>
+			</dd>
+		</dl>
+
+		<h2>API Calls</h2>
+		<dl class="model-attributes">
+			<dt>array Order::all()</dt>
+			<dd>
+				Get all order created by your shop.
+				<h5>Returns:</h5>
+				<div class="methods">
+					Array containing the list of Order objects that
+					belong to your shop.
+				</div>
+			</dd>
+			<dt>object Order::get( integer $id )</dt>
+			<dd>
+				Get the order identified by the unique id.
+				<h5>Returns:</h5>
+				<div class="methods">
+					The Order object identified by the unique id.
+				</div>
+			</dd>
+			<dt>object create()</dt>
+			<dd>
+				Create a new order and attach it to your shop.
+				The Order object that you use to call this method
+				does not need an id, and if you provide an id, it will be
+				ignored. All other attributes of the Order object will be
+				saved with the newly created order. All order items that
+				are attached to this Order object will be created also.
+				Each of the order items must have a Product attached to
+				them (using any of the methods described above), or the
+				order item will not be able to be saved. If you provide
+				a Customer object or a DeliveryMode object with this order,
+				they will also be saved.
+				<h5>Returns:</h5>
+				<div class="methods">
+					The Order object that was created.
+				</div>
+			</dd>
+			<dt>object update()</dt>
+			<dd>
+				Update an existing order.
+				The Order object that you use to call this method
+				<em>requires</em> a valid id to identiy the order that
+				will be updated. Other than the id, you only need to
+				provide the attributes that you wish to update. If an
+				attribute is not set, then it will not be updated in
+				the database, and it will keep it's original value.
+				If you add order items to the order object, they will
+				be updated (when the order item's id matches the id
+				of an order item already attached to this order), or
+				created (when the order id has no id). The same behavior
+				(update or create) will happen for Customer and DeliveryMode.
+				<h5>Returns:</h5>
+				<div class="methods">
+					The Order object that was updated.
+				</div>
+			</dd>
+			<dt>object delete()</dt>
+			<dd>
+				Delete an existing order.
+				The Order object that you use to call this method
+				<em>requires</em> a valid id to identiy the order that
+				will be deleted.
+				<h5>Returns:</h5>
+				<div class="methods">
+					The Order object that was deleted.
+				</div>
+			</dd>
+		</dl>
 	</div>
 </body>
 </html>

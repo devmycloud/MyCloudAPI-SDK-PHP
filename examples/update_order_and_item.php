@@ -16,27 +16,35 @@ use MyCloud\Api\Model\Product;
 //   [4] OrderItem Quantity
 //   [5] OrderItem Price
 
-try {
-	$updateOrder = new Order();
-	$updateOrder->setId($argv[1]);
-	$updateOrder->setStatus($argv[2]);
+if ( count($argv) != 6 ) {
+	print "Incorrect arguments. Usage:" . PHP_EOL;
+	print "    php " . $argv[0] . " orderId newStatus orderItemId newQuantity newPrice" . PHP_EOL;
+} else {
+	try {
+		$updateOrder = new Order();
+		$updateOrder->setId($argv[1]);
+		$updateOrder->setStatus($argv[2]);
 
-	// NOTE That we set the Product parameter to NULL, because we do not
-	//      want to update the Product model. We only want to set the
-	//      OrderItem's quantity and price.
-	$updateItem = new OrderItem( $updateOrder, NULL, $argv[4], $argv[5] );
-	$updateItem->setId($argv[3]);
+		// NOTE That we set the Product parameter to NULL, because we do not
+		//      want to update the Product model. We only want to set the
+		//      OrderItem's quantity and price.
+		$updateItem = new OrderItem();
+		$updateItem->setOrder( $updateOrder )
+			->setQuantity( $argv[4] )
+			->setPrice( $argv[5] );
+		$updateItem->setId($argv[3]);
 
-	$updateOrder->addOrderItem( $updateItem );
+		$updateOrder->addOrderItem( $updateItem );
 
-	$order = $updateOrder->update();
+		$order = $updateOrder->update();
 
-	if ( $order instanceof MCError ) {
-		print "ERROR updating order:" . PHP_EOL;
-		print "      " . $order->getMessage() . PHP_EOL;
-	} else {
-		print_order( "Updated Order", $order );
+		if ( $order instanceof MCError ) {
+			print "ERROR updating order:" . PHP_EOL;
+			print "      " . $order->getMessage() . PHP_EOL;
+		} else {
+			print_order( "Updated Order", $order );
+		}
+	} catch ( Exception $ex ) {
+		print "EXCEPTION: " . $ex->getMessage() . PHP_EOL;
 	}
-} catch ( Exception $ex ) {
-	print "EXCEPTION: " . $ex->getMessage() . PHP_EOL;
 }

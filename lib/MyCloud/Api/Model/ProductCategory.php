@@ -133,7 +133,7 @@ class ProductCategory extends MyCloudModel
     {
 		$product_category = NULL;
         $payload = $this->toArray();
-		print "CREATE PRODUCTCATEGORY: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
+		// print "CREATE PRODUCTCATEGORY: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
 
         $json_data = self::executeCall(
             "/v1/productcategories",

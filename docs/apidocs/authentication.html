@@ -38,8 +38,8 @@
 			for authetication. This stateless authentication protocol
 			is becoming a popular standard for API's for many good
 			technical reasons. Here at MyCloud, we chose JWT because
-			it is simple to implement, requires very little overhead,
-			has many libraries available in almost every popular
+			it is straighforward to implement, requires very little
+			overhead, has libraries available in almost every popular
 			programming language, and eliminates the need for state
 			(such as sessions and cookies), which means that it can
 			scale better.
@@ -49,6 +49,45 @@
 			about JWT. All of the authentication is handled for you
 			by the SDK. All you need to do is configure your API
 			keys, and you are all set to beging using the API.
+		</p>
+		<p>
+			The JWT authentication is <em>token based</em>, which
+			means that the API never sends user logins or passwords
+			within the protocol. Your account is provided with an
+			apiKey and a secretKey, which are exchanged in the 
+			protocol. Tokens expire after a reasonble period
+			(currently 8 hours), after which they must be refreshed.
+			This allows MyCloud to expire or invalidate keys that
+			are known to be compromised, without needing to modify
+			your account login credentials. If your tokens are
+			ever compromised, we simply issue new tokens for your
+			account. You can then login to get the new keys, add
+			them to your configuration, and continue working with
+			the API.
+		</p>
+		<p>
+			When you make requests with the API, you will set
+			the 'Authentication' header, with a 'Bearer '
+			specification that includes your JWT token. This
+			token is then verified against the token list on the
+			server to authenticate your request.
+		</p>
+		<p>
+			If you do not have a token, or the token you are using
+			has expired, then you will need to request a new token.
+			The API exposes a POST request named '/gettoken' to get
+			a new token to continue using the API. The request takes
+			two parameters: apikey, secretKey. With this request,
+			a JWT token will be returned to you, which you will then
+			used in the 'Authentication' header for every other API
+			request that you make.
+		</p>
+		<p>
+			If you are using the PHP SDK, you never need to worry
+			about any of the authentication protocols. You will
+			configure your API keys in the sdk_config.ini 
+			configuration file used by your program, and the SDK
+			will handle everything for you.
 		</p>
 	</div>
 </body>

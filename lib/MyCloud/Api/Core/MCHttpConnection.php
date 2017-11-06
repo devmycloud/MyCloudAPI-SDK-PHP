@@ -109,14 +109,12 @@ class MCHttpConnection
                 curl_setopt( $ch, CURLOPT_POST, true );
                 curl_setopt( $ch, CURLOPT_POSTFIELDS, $payLoad );
                 break;
-			//
-			// SEE NOTE IN MyCloudModel::executeCall()
-            //
-            // case 'PUT':
-            // case 'PATCH':
-            // case 'DELETE':
-            //     curl_setopt( $ch, CURLOPT_POSTFIELDS, $payLoad );
-            //     break;
+
+            // case 'PUT': Currently unused
+            case 'PATCH':
+            case 'DELETE':
+                curl_setopt( $ch, CURLOPT_POSTFIELDS, $payLoad );
+                break;
         }
 
         // Default Option if Method not of given types in switch case

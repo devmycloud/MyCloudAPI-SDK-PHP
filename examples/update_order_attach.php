@@ -24,11 +24,20 @@ use MyCloud\Api\Model\Product;
 //
 if ( count($argv) < 6 ) {
 	print "Not enough arguments. Usage:" . PHP_EOL;
-	print "    php " . $argv[0] . " orderId name fileName fileType filePath" . PHP_EOL;
+	print "    php " . $argv[0] . " orderId attachmentName " .
+		"attachmentFileName attachmentFileType attachmentFilePath" . PHP_EOL;
+	print "Where:" . PHP_EOL;
+	print "   attachmentName is the 'tag' assigned to the attachment (e.g., RECEIPT)" . PHP_EOL;
+	print "   attachmentFileName is the name of the attachment file (reference only)" . PHP_EOL;
+	print "   attachmentFileType is the MIME type of the attachment file (e.g., image/jpg)" . PHP_EOL;
+	print "   attachmentFilePath is the path to the file on the local computer" . PHP_EOL;
 } else {
 	try {
 		$updateOrder = new Order();
 		$updateOrder->setId( $argv[1] );
+		$updateOrder->setPaymentAmount( 999 );
+		$updateOrder->setPaymentDate( '2017-10-31' );
+		$updateOrder->setPaymentTime( '16:20:55' );
 		$updateOrder->attachFile( $argv[2], $argv[3], $argv[4], $argv[5] );
 
 		$order = $updateOrder->update();

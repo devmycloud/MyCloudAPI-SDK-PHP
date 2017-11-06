@@ -10,15 +10,20 @@ use MyCloud\Api\Model\Customer;
 // ARGUMENTS:
 //   [1] Customer ID
 
-try {
-	$customer = Customer::get( $argv[1] );
+if ( count($argv) != 2 ) {
+	print "Incorrect arguments. Usage:" . PHP_EOL;
+	print "    php " . $argv[0] . " customerId" . PHP_EOL;
+} else {
+	try {
+		$customer = Customer::get( $argv[1] );
 
-	if ( $customer instanceof MCError ) {
-		print "ERROR retrieving customer:" . PHP_EOL;
-		print "      " . $customer->getMessage() . PHP_EOL;
-	} else {
-		print_customer( "Customer", $customer );
+		if ( $customer instanceof MCError ) {
+			print "ERROR retrieving customer:" . PHP_EOL;
+			print "      " . $customer->getMessage() . PHP_EOL;
+		} else {
+			print_customer( "Customer", $customer );
+		}
+	} catch ( Exception $ex ) {
+		print "EXCEPTION: " . $ex->getMessage() . PHP_EOL;
 	}
-} catch ( Exception $ex ) {
-	print "EXCEPTION: " . $ex->getMessage() . PHP_EOL;
 }

@@ -275,7 +275,7 @@ class Product extends MyCloudModel
 					$this->photo_file['filename']
 				);
 		}
-		print "UPDATE PRODUCT: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
+		// print "UPDATE PRODUCT: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
 
         $json_data = self::executeCall(
             "/v1/products/" . $this->id,
@@ -284,7 +284,7 @@ class Product extends MyCloudModel
             array(),
             $apiContext
         );
-		print "UPDATE PRODUCT: JSON RESULT: " . $json_data . PHP_EOL;
+		// print "UPDATE PRODUCT: JSON RESULT: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -301,6 +301,51 @@ class Product extends MyCloudModel
 			$product = new MCError( $result['message'] );
 			MCLoggingManager::getInstance(__CLASS__)
 				->error( "Failed creating Product: " . $result['message'] );
+		}
+
+        return $product;
+    }
+
+	/**
+	 * Delete this Product.
+	 *
+	 * The ID of this Product object must be set before calling this function.
+	 *
+	 */
+
+    public function delete( $apiContext = null )
+    {
+		if ( empty($this->id) ) {
+			return new MCError( "Product has no id. You must set the id of the product to delete." );
+		}
+
+		$product = NULL;
+        $payload = array();
+
+        $json_data = self::executeCall(
+            "/v1/products/" . $this->id,
+            "DELETE",
+            $payload,
+            array(),
+            $apiContext
+        );
+		// print "DELETE PRODUCT: JSON RESULT: " . $json_data . PHP_EOL;
+
+		$result = json_decode( $json_data, true );
+
+		if ( $result['success'] ) {
+			if ( isset($result['data']) && is_array($result['data']) ) {
+				$product = new Product();
+				$product->fromArray( $result['data'] );
+			} else {
+				$product = new MCError( 'API Returned invalid Product data' );
+				MCLoggingManager::getInstance(__CLASS__)
+					->error( "Product data not array: " . print_r($result['data']) );
+			}
+		} else {
+			$product = new MCError( $result['message'] );
+			MCLoggingManager::getInstance(__CLASS__)
+				->error( "Failed deleting Product: " . $result['message'] );
 		}
 
         return $product;

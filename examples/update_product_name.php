@@ -11,19 +11,24 @@ use MyCloud\Api\Model\Product;
 //   [1] Product ID
 //   [1] Product Name
 
-try {
-	$updateProduct = new Product();
-	$updateProduct->id = $argv[1];
-	$updateProduct->name = $argv[2];
+if ( count($argv) != 2 ) {
+	print "Incorrect arguments. Usage:" . PHP_EOL;
+	print "    php " . $argv[0] . " productId newName" . PHP_EOL;
+} else {
+	try {
+		$updateProduct = new Product();
+		$updateProduct->id = $argv[1];
+		$updateProduct->name = $argv[2];
 
-	$product = $updateProduct->update();
+		$product = $updateProduct->update();
 
-	if ( $product instanceof MCError ) {
-		print "ERROR updating product:" . PHP_EOL;
-		print "      " . $product->getMessage() . PHP_EOL;
-	} else {
-		print_product( "Updated Product", $product );
+		if ( $product instanceof MCError ) {
+			print "ERROR updating product:" . PHP_EOL;
+			print "      " . $product->getMessage() . PHP_EOL;
+		} else {
+			print_product( "Updated Product", $product );
+		}
+	} catch ( Exception $ex ) {
+		print "EXCEPTION: " . $ex->getMessage() . PHP_EOL;
 	}
-} catch ( Exception $ex ) {
-	print "EXCEPTION: " . $ex->getMessage() . PHP_EOL;
 }

@@ -64,6 +64,46 @@ class Order extends MyCloudModel
 		return $this;
 	}
 
+	public function getBillingTitle() {
+		return $this->billing_title;
+	}
+	public function setBillingTitle($billing_title) {
+		$this->billing_title = $billing_title;
+		return $this;
+	}
+
+	public function getCustomerReference() {
+		return $this->customer_reference;
+	}
+	public function setCustomerReference($customer_reference) {
+		$this->customer_reference = $customer_reference;
+		return $this;
+	}
+
+	public function getOrderNumber() {
+		return $this->order_number;
+	}
+	public function setOrderNumber($order_number) {
+		$this->order_number = $order_number;
+		return $this;
+	}
+
+	public function getCreateDate() {
+		return $this->create_date;
+	}
+	public function setCreateDate($create_date) {
+		$this->create_date = $create_date;
+		return $this;
+	}
+
+	public function getDeliveryDate() {
+		return $this->delivery_date;
+	}
+	public function setDeliveryDate($delivery_date) {
+		$this->delivery_date = $delivery_date;
+		return $this;
+	}
+
 	public function getName() {
 		return $this->mc_number;
 	}
@@ -104,6 +144,22 @@ class Order extends MyCloudModel
 		return $this;
 	}
 
+	public function getTotalPrice() {
+		return $this->total_price;
+	}
+	public function setTotalPrice($total_price) {
+		$this->total_price = $total_price;
+		return $this;
+	}
+
+	public function getUrgent() {
+		return $this->urgent;
+	}
+	public function setUrgent($urgent) {
+		$this->urgent = $urgent;
+		return $this;
+	}
+
 	public function getWeight() {
 		return $this->mc_number;
 	}
@@ -112,14 +168,37 @@ class Order extends MyCloudModel
 		return $this;
 	}
 
-	public function getOrderItems()
-	{
-		return $this->order_items;
+	public function getPaymentAmount() {
+		return $this->payment_amount;
+	}
+	public function setPaymentAmount($payment_amount) {
+		$this->payment_amount = $payment_amount;
+		return $this;
+	}
+
+	public function getPaymentDate() {
+		return $this->payment_date;
+	}
+	public function setPaymentDate($payment_date) {
+		$this->payment_date = $payment_date;
+		return $this;
+	}
+
+	public function getPaymentTime() {
+		return $this->payment_time;
+	}
+	public function setPaymentTime($payment_time) {
+		$this->payment_time = $payment_time;
+		return $this;
 	}
 
 	public function getAttachments()
 	{
 		return $this->attachments;
+	}
+
+	public function getCustomerId() {
+		return $this->customer_id;
 	}
 
 	public function getCustomer()
@@ -129,8 +208,13 @@ class Order extends MyCloudModel
 
 	public function setCustomer( $customer )
 	{
+		$customer->setOrder( $this );
 		$this->customer = $customer;
 		return $this;
+	}
+
+	public function getDeliveryModeId() {
+		return $this->delivery_mode_id;
 	}
 
 	public function getDeliveryMode()
@@ -144,8 +228,14 @@ class Order extends MyCloudModel
 		return $this;
 	}
 
+	public function getOrderItems()
+	{
+		return $this->order_items;
+	}
+
 	public function addOrderItem( $order_item )
 	{
+		$order_item->setOrder( $this );
 		$this->order_items[] = $order_item;
 		return $this;
 	}
@@ -161,7 +251,12 @@ class Order extends MyCloudModel
 	 */
 	public function addProduct( $product, $quantity, $price )
 	{
-		$order_item = new OrderItem( $this, $product, $quantity, $price );
+		$order_item = new OrderItem();
+		$order_item
+			->setOrder( $this )
+			->setProduct( $product )
+			->setQuantity( $quantity )
+			->setPrice( $price );
 		$this->addOrderItem( $order_item );
 		return $this;
 	}
@@ -178,7 +273,12 @@ class Order extends MyCloudModel
 	{
 		$product = new Product();
 		$product->setId( $product_id );
-		$order_item = new OrderItem( $this, $product, $quantity, $price );
+		$order_item = new OrderItem();
+		$order_item
+			->setOrder( $this )
+			->setProduct( $product )
+			->setQuantity( $quantity )
+			->setPrice( $price );
 		$this->addOrderItem( $order_item );
 		return $this;
 	}
@@ -443,7 +543,7 @@ class Order extends MyCloudModel
 				);
 			$index++;
 		}
-		// print "CREATE ORDER: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
+		// print "UPDATE ORDER: PAYLOAD: " . var_export($payload, true) . PHP_EOL;
 
         $json_data = self::executeCall(
             "/v1/orders/" . $this->id,
@@ -452,7 +552,7 @@ class Order extends MyCloudModel
             array(),
             $apiContext
         );
-		print "CREATE ORDER: JSON RESULT: " . $json_data . PHP_EOL;
+		// print "UPDATE ORDER: JSON RESULT: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -474,6 +574,42 @@ class Order extends MyCloudModel
         return $order;
     }
 
+	/**
+	 * Delete this Order.
+	 *
+	 * The ID of this Order object must be set before calling this function.
+	 *
+	 */
+
+    public function delete( $apiContext = null )
+    {
+		if ( empty($this->id) ) {
+			return new MCError( "Order has no id. You must set the id of the order to delete." );
+		}
+
+		$order = $this;
+        $payload = array();
+
+        $json_data = self::executeCall(
+            "/v1/orders/" . $this->id,
+            "DELETE",
+            $payload,
+            array(),
+            $apiContext
+        );
+		// print "DELETE ORDER: JSON RESULT: " . $json_data . PHP_EOL;
+
+		$result = json_decode( $json_data, true );
+
+		if ( ! $result['success'] ) {
+			$order = new MCError( $result['message'] );
+			MCLoggingManager::getInstance(__CLASS__)
+				->error( "Failed deleting Order: " . $result['message'] );
+		}
+
+        return $order;
+    }
+
 	public function fromArray( $data )
 	{
 		// FIXME The "if" statements below checking for is_array() and ! empty()
@@ -489,7 +625,8 @@ class Order extends MyCloudModel
 
 		if ( isset($data['customer']) ) {
 			if ( is_array($data['customer']) && !empty($data['customer']) ) {
-				$customer = new Customer( $this );
+				$customer = new Customer();
+				$customer->setOrder( $this );
 				$customer->fromArray( $data['customer'] );
 				$this->customer = $customer;
 			}
@@ -508,7 +645,8 @@ class Order extends MyCloudModel
 		if ( isset($data['order_items']) ) {
 			if ( is_array($data['order_items']) ) {
 				foreach ( $data['order_items'] as $order_item_data ) {
-					$order_item = new OrderItem( $this );
+					$order_item = new OrderItem();
+					$order_item->setOrder($this);
 					$order_item->fromArray( $order_item_data );
 					$this->order_items[] = $order_item;
 				}

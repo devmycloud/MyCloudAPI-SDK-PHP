@@ -36,6 +36,67 @@
 			The Delivery Mode model represents a mode of delivery that is defined
 			for your shop.
 		</p>
+
+		<h2>Model Attributes</h2>
+		<dl class="model-attributes">
+			<dt>id</dt>
+			<dd>
+				Unique numeric ID of the delivery mode.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getId()<br/>
+				object setId( integer )
+				</div>
+			</dd>
+			<dt>code</dt>
+			<dd>
+				The code that the shop assigned to the delivery mode.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getCode()<br/>
+				object setCode( string )
+				</div>
+			</dd>
+			<dt>name</dt>
+			<dd>
+				The name of the delivery mode.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getName()<br/>
+				object setName( string )
+				</div>
+			</dd>
+			<dt>contact</dt>
+			<dd>
+				Contact url or information for delivery mode provider.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getContact()<br/>
+				object setContact( string )
+				</div>
+			</dd>
+		</dl>
+
+		<h2>API Calls</h2>
+		<dl class="model-attributes">
+			<dt>array DeliveryMode::all()</dt>
+			<dd>
+				Get all delivery modes defined for your shop.
+				<h5>Returns:</h5>
+				<div class="methods">
+					Array containing the list of DeliveryMode objects that
+					are defined for to your shop.
+				</div>
+			</dd>
+			<dt>object DeliveryMode::get( integer $id )</dt>
+			<dd>
+				Get the delivery mode identified by the unique id.
+				<h5>Returns:</h5>
+				<div class="methods">
+					The DeliveryMode object identified by the unique id.
+				</div>
+			</dd>
+		</dl>
 	</div>
 </body>
 </html>

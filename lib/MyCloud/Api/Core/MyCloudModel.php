@@ -289,28 +289,41 @@ class MyCloudModel
         $config = $apiContext->getConfig();
 
 		// NOTE
-		// PHP has some serious issues with PUT and PATCH. Specifically,
-		// you cannot perform File Uploads with PUT. Also, it appears that
-		// curl does not properly send the POST fields with PATCH (I am not
-		// entirely sure why this is not working, but the File Upload issue
-		// is a game-stopper, so it really does not matter does it?). Thus,
-		// we are using the Laravel (and Rails actually) "cheat" of using
-		// the POST method with a parameter to indicate the "real" method.
+		// PHP has some serious issues with PUT and PATCH. Specifically, the
+		// PHP developers have decided (rightly or wrongly) that they will not
+		// process the input data for these requests. For this reason, Laravel
+		// support these verbs using the "_method" mechanism, which always uses
+		// the POST verb, and sets the "_method" parameter to indicate the actual
+		// verb being requested. This is not what we want for a proper RESTful
+		// API, which should be using proper verbs.
 		//
 		// SEE: https://laravel.io/forum/02-13-2014-i-can-not-get-inputs-from-a-putpatch-request
 		// And the note that says:
 		//    The problem looks like lies in Symfony it can't parse the data if it's multipart/form-data
 		// This is a MAJOR problem with properly supporting the correct HTTP verbs!
 		// Apparently this is _still_ (Nov 1, 2017) a problem.
-		// Not sure if we can justify fixing this shit!
-
-		if ( $method == 'PUT' ) {
-			$method = 'POST';
-			$payLoad['_method'] = 'PUT';
-		} elseif ( $method == 'PATCH' ) {
-			$method = 'POST';
-			$payLoad['_method'] = 'PATCH';
-		}
+		// Not sure if we can justify fixing this.
+		//
+		// Nov 5, 2017
+		// Following up. I could not accept the "magic _method" fix, so I hunted down
+		// the answer. It turns out that php://input has our payload (parameters and
+		// files) data, it is just not processed. After some searching, I found code
+		// that was close to what we needed and fixed it to support reading php://input
+		// and building the parameters that we expected in $request.
+		//
+		// Here is the GIST for that code:
+		//    https://gist.github.com/devmycloud/df28012101fbc55d8de1737762b70348
+		//
+		// So, we now can properly support all of the RESTful verbs, and the following
+		// HACK (sorry, "magic") is no longer required.
+		//
+		// if ( $method == 'PUT' ) {
+		// 	$method = 'POST';
+		// 	$payLoad['_method'] = 'PUT';
+		// } elseif ( $method == 'PATCH' ) {
+		// 	$method = 'POST';
+		// 	$payLoad['_method'] = 'PATCH';
+		// }
 
 		$token = $apiContext->getToken();
 

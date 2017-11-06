@@ -21,10 +21,10 @@ class Customer extends MyCloudModel
      * Default Constructor
      *
      */
-    public function __construct( $order=NULL )
-    {
-		$this->order = $order;
-    }
+	//    public function __construct( $order=NULL )
+	//    {
+	//		$this->order = $order;
+	//    }
 
 	public function getId() {
 		return $this->id;
@@ -109,6 +109,11 @@ class Customer extends MyCloudModel
 	public function getOrder()
 	{
 		return $this->order;
+	}
+	public function setOrder( $order )
+	{
+		$this->order = $order;
+		return $this;
 	}
 
 	/**

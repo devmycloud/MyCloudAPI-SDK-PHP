@@ -53,6 +53,20 @@
 			class objects. You can work with them the same as you would
 			with any PHP class and object.
 		</p>
+		<p>
+			All model objects are contained in the PHP namespace
+			<code>MyCloud\Api\Model</code>. For convenience and to simplify
+			your code, you can add PHP <em>use</em> statements at the top
+			of your code as in:
+			<pre>
+ use MyCloud\Api\Model\Customer;
+ use MyCloud\Api\Model\Order;
+ use MyCloud\Api\Model\Product;</pre>
+			This will allow you to refer to the object classes directly
+			without specifying the namespace, as in:
+			<pre>
+ $order = new Order();
+ $customer_list = Customer::all();</pre>
 
 		<h2>Model Attributes</h2>
 		<p>
@@ -67,8 +81,10 @@
 			Thus, you can access the value of the customer name with either
 			of these programming constructs:
 			<pre>
-   $customer->name<br/>
-   $customer->getName()</pre>
+ $name = $customer->name;
+ $name = $customer->getName();
+ $customer->name = $name;
+ $customer->setName( $name );</pre>
 		</p>
 
 		<h2>API Requests</h2>
@@ -92,13 +108,13 @@
 		</p>
 			<pre>
 try {
-	$category = ProductCategory::get( $argv[1] );
+	$product = Product::get( $product_id );
 
-	if ( $category instanceof MCError ) {
-		print "ERROR retrieving ProductCategory:" . PHP_EOL;
-		print "      " . $category-&gt;getMessage() . PHP_EOL;
+	if ( $product instanceof MCError ) {
+		print "ERROR retrieving Product:" . PHP_EOL;
+		print "      " . $product-&gt;getMessage() . PHP_EOL;
 	} else {
-		print_category( "ProductCategory", $category );
+		print_product_data( "Product: ", $product );
 	}
 } catch ( Exception $ex ) {
 	print "EXCEPTION: " . $ex-&gt;getMessage() . PHP_EOL;

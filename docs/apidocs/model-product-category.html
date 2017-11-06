@@ -36,6 +36,67 @@
 			The Product Category model represents a category that you have
 			defined to <em>group</em> products together.
 		</p>
+
+		<h2>Model Attributes</h2>
+		<dl class="model-attributes">
+			<dt>id</dt>
+			<dd>
+				Unique numeric ID of the category.
+				<h5>Methods:</h5>
+				<div class="methods">
+				integer getId()<br/>
+				object setId( integer )
+				</div>
+			</dd>
+			<dt>code</dt>
+			<dd>
+				The code assigned by the shop for this category.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getCode()<br/>
+				object setCode( string )
+				</div>
+			</dd>
+			<dt>name</dt>
+			<dd>
+				The name of the category.
+				<h5>Methods:</h5>
+				<div class="methods">
+				string getName()<br/>
+				object setName( string )
+				</div>
+			</dd>
+		</dl>
+
+		<h2>API Calls</h2>
+		<dl class="model-attributes">
+			<dt>array ProductCategory::all()</dt>
+			<dd>
+				Get all product categories defined by your shop.
+				<h5>Returns:</h5>
+				<div class="methods">
+					Array containing the list of ProductCategory objects that
+					are defined by your shop.
+				</div>
+			</dd>
+			<dt>object ProductCategory::get( integer $id )</dt>
+			<dd>
+				Get the product category identified by the unique id.
+				<h5>Returns:</h5>
+				<div class="methods">
+					An ProductCategory object identified by the unique id.
+				</div>
+			</dd>
+			<dt>object create()</dt>
+			<dd>
+				Create a new product category with the attributes defined
+				by this object. The id attribute, if set, will be ignored.
+				<h5>Returns:</h5>
+				<div class="methods">
+					The ProductCategory object that was created.
+				</div>
+			</dd>
+		</dl>
 	</div>
 </body>
 </html>
