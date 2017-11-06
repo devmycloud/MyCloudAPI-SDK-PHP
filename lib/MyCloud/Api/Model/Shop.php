@@ -117,7 +117,7 @@ class Shop extends MyCloudModel
             array(),
             $apiContext
         );
-		print "Shop::all() DATA: " . $json_data . PHP_EOL;
+		// print "Shop::all() DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
@@ -162,7 +162,7 @@ class Shop extends MyCloudModel
             array(),
             $apiContext
         );
-		print "Shop::get() DATA: " . $json_data . PHP_EOL;
+		// print "Shop::get() DATA: " . $json_data . PHP_EOL;
 
 		$result = json_decode( $json_data, true );
 
