@@ -434,7 +434,7 @@ class Order extends MyCloudModel
 		$index  = 0;
 		foreach ( $this->attachments as $attach ) {
 			$payload['attach_name[' . $index . ']'] = $attach['attachment'];
-			$payload['attach_file[' . $index . ']'] =
+			$payload['attach_file[' . $attach['attachment'] . ']'] =
 				new \CurlFile(
 					$attach['filepath'],
 					$attach['filetype'],

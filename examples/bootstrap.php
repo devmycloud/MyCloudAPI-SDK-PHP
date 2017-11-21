@@ -11,6 +11,8 @@ function root_dir( $dir, $levels ) {
 $debug = FALSE;
 $loadable = TRUE;
 
+date_default_timezone_set('Asia/Bangkok');
+
 // First, we will assume that this is the development project pulled from
 // git with a top level vendor directory created by 'composer install'
 $topDir = root_dir( __FILE__, 2 );
