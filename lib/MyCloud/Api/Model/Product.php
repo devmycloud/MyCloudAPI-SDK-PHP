@@ -42,6 +42,14 @@ class Product extends MyCloudModel
 		return $this;
 	}
 
+	public function getShopSKU() {
+		return $this->shop_sku;
+	}
+	public function setShopSKU($shop_sku) {
+		$this->shop_sku = $shop_sku;
+		return $this;
+	}
+
 	public function getName() {
 		return $this->name;
 	}
@@ -71,7 +79,7 @@ class Product extends MyCloudModel
 			array( '', '', '', '' ) : $this->client_references;
 	}
 	public function setClientReferences($references) {
-		if ( $reference === NULL ) {
+		if ( $references === NULL ) {
 			$this->client_references = NULL;
 		} elseif ( empty($references) || count($references) == 0 ) {
 			$this->client_references = array( '', '', '', '' );
@@ -208,8 +216,10 @@ class Product extends MyCloudModel
 		$product = NULL;
         $payload = $this->toArray();
 
-		foreach ( $this->client_references as $idx => $ref ) {
-			$payload['client_references[' . $idx . ']'] = $ref;
+		if ( isset($this->client_references) ) {
+			foreach ( $this->client_references as $idx => $ref ) {
+				$payload['client_references[' . $idx . ']'] = $ref;
+			}
 		}
 
 		if ( ! empty($this->photo_file) ) {

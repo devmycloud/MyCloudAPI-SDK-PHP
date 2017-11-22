@@ -95,6 +95,7 @@ function print_order( $title, $order ) {
 			print "      --- Product -------------------------" . PHP_EOL;
 			print "          Product[" . $product->id . "]" . PHP_EOL;
 			print "          SKU: " . $product->sku . PHP_EOL;
+			print "          ShopSKU: " . $product->shop_sku . PHP_EOL;
 			print "          Name: " . $product->name . PHP_EOL;
 			print "          Description: " . $product->description . PHP_EOL;
 			print "          PhotoUrl: " . $product->photo_url . PHP_EOL;
@@ -119,6 +120,7 @@ function print_order_item( $title, $order_item ) {
 function print_product( $title, $product ) {
 	print $title . "[" . $product->id . "]" . PHP_EOL;
 	print "   SKU: " . $product->sku . PHP_EOL;
+	print "   ShopSKU: " . $product->shop_sku . PHP_EOL;
 	print "   Name: " . $product->name . PHP_EOL;
 	print "   Description: " . $product->description . PHP_EOL;
 	print "   PhotoUrl: " . $product->photo_url . PHP_EOL;

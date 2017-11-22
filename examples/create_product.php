@@ -12,18 +12,19 @@ $filetype = 'image/jpeg';
 $filepath = '/Users/time/Downloads/ProductImage.jpg';
 
 // ARGUMENTS:
-//   [1] Product Name
-//   [2] Product Description
-//   [3] Product SupplierReference
-//   [4] Product Photo Filename  (e.g., 'ProductPhoto.jpg')
-//   [5] Product Photo Filetype  (e.g., 'image/jpeg')
-//   [6] Product Photo Filepath  (path to actual file to upload)
-//   [7-10] ClientReference 1 thru 4
+//   [1] Product Shop SKU
+//   [2] Product Name
+//   [3] Product Description
+//   [4] Product SupplierReference
+//   [5] Product Photo Filename  (e.g., 'ProductPhoto.jpg')
+//   [6] Product Photo Filetype  (e.g., 'image/jpeg')
+//   [7] Product Photo Filepath  (path to actual file to upload)
+//   [8-11] ClientReference 1 thru 4
 //          If argument not provided, reference is not set.
 
-if ( count($argv) < 7 || count($argv) > 11 ) {
+if ( count($argv) < 8 || count($argv) > 12 ) {
 	print "Incorrect arguments. Usage:" . PHP_EOL;
-	print "    php " . $argv[0] . " name description supplierReference " .
+	print "    php " . $argv[0] . " shopsku name description supplierReference " .
 		"photoFilename photoFiletype photoFilepath [clientReference...]" . PHP_EOL;
 	print "Where:" . PHP_EOL;
 	print "   photoFilename is the name of the attachment file (reference only)" . PHP_EOL;
@@ -37,9 +38,6 @@ if ( count($argv) < 7 || count($argv) > 11 ) {
 		// NOTE You can set up to 4 client references
 		$argcnt = count($argv);
 		$client_references = array();
-		if ( $argcnt > 7 ) {
-			$client_references[] = $argv[7];
-		}
 		if ( $argcnt > 8 ) {
 			$client_references[] = $argv[8];
 		}
@@ -49,13 +47,17 @@ if ( count($argv) < 7 || count($argv) > 11 ) {
 		if ( $argcnt > 10 ) {
 			$client_references[] = $argv[10];
 		}
+		if ( $argcnt > 11 ) {
+			$client_references[] = $argv[11];
+		}
 
 		$createProduct
-			->setName($argv[1])
-			->setDescription($argv[2])
-			->setSupplierReference($argv[3])
+			->setShopSKU($argv[1])
+			->setName($argv[2])
+			->setDescription($argv[3])
+			->setSupplierReference($argv[4])
 			->setClientReferences( $client_references )
-			->setPhoto( $argv[4], $argv[5], $argv[6] );
+			->setPhoto( $argv[5], $argv[6], $argv[7] );
 
 		$product = $createProduct->create();
 

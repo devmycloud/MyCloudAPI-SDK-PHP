@@ -267,12 +267,56 @@ class Order extends MyCloudModel
 	 * object and add it to the Order. This should only used when creating
 	 * a new Order.
 	 *
-	 * NOTE The Product with the given product id MUST already exist.
+	 * NOTE The Product with the given ID MUST already exist.
 	 */
 	public function addProductById( $product_id, $quantity, $price )
 	{
 		$product = new Product();
 		$product->setId( $product_id );
+		$order_item = new OrderItem();
+		$order_item
+			->setOrder( $this )
+			->setProduct( $product )
+			->setQuantity( $quantity )
+			->setPrice( $price );
+		$this->addOrderItem( $order_item );
+		return $this;
+	}
+
+	/*
+	 * addProductBySKU is a convenience function for adding an order item
+	 * using only the MyCloud SKU. This method will create a new OrderItem
+	 * object and add it to the Order. This should only used when creating
+	 * a new Order.
+	 *
+	 * NOTE The Product with the given MyCloud SKU MUST already exist.
+	 */
+	public function addProductBySKU( $sku, $quantity, $price )
+	{
+		$product = new Product();
+		$product->setSKU( $sku );
+		$order_item = new OrderItem();
+		$order_item
+			->setOrder( $this )
+			->setProduct( $product )
+			->setQuantity( $quantity )
+			->setPrice( $price );
+		$this->addOrderItem( $order_item );
+		return $this;
+	}
+
+	/*
+	 * addProductByShopSKU is a convenience function for adding an order item
+	 * using only the Shop's SKU. This method will create a new OrderItem
+	 * object and add it to the Order. This should only used when creating
+	 * a new Order.
+	 *
+	 * NOTE The Product with the given Shop SKU MUST already exist.
+	 */
+	public function addProductByShopSKU( $sku, $quantity, $price )
+	{
+		$product = new Product();
+		$product->setShopSKU( $sku );
 		$order_item = new OrderItem();
 		$order_item
 			->setOrder( $this )
@@ -425,7 +469,15 @@ class Order extends MyCloudModel
 
 		$index  = 0;
 		foreach ( $this->order_items as $order_item ) {
-			$payload['order_items[' . $index . '][product_id]'] = $order_item->product->id;
+			if ( ! empty($order_item->product->id) ) {
+				$payload['order_items[' . $index . '][product_id]'] = $order_item->product->id;
+			}
+			if ( ! empty($order_item->product->sku) ) {
+				$payload['order_items[' . $index . '][product_sku]'] = $order_item->product->sku;
+			}
+			if ( ! empty($order_item->product->shop_sku) ) {
+				$payload['order_items[' . $index . '][shop_sku]'] = $order_item->product->shop_sku;
+			}
 			$payload['order_items[' . $index . '][quantity]'] = $order_item->quantity;
 			$payload['order_items[' . $index . '][price]'] = $order_item->price;
 			$index++;
