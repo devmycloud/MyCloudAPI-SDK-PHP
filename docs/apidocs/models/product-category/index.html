@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title>MyCloud API PHP SDK</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../../../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../../../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+	<link href="../../../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github home-page">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="../../../"><img src="../../../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../../../readme/">README</a>
+				<a href="../../../apidocs/">Documentation</a>
+				<a href="../../../downloads/mycloud-api-sdk-php-0.7.4.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+	<div class="bread-crumb">
+	<a href="../../../">Home</a
+		>&nbsp;&gt; <a href="../../../apidocs/">API&nbsp;Documentation</a
+		>&nbsp;&gt; Product&nbsp;Category
+</div>
+
+<h1>Product Category Model</h1>
+<p>
+	The Product Category model represents a category that you have
+	defined to <em>group</em> products together.
+</p>
+
+<h2>Model Attributes</h2>
+<dl class="model-attributes">
+	<dt>id</dt>
+	<dd>
+		Unique numeric ID of the category.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getId()<br/>
+		object setId( integer )
+		</div>
+	</dd>
+	<dt>code</dt>
+	<dd>
+		The code assigned by the shop for this category.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getCode()<br/>
+		object setCode( string )
+		</div>
+	</dd>
+	<dt>name</dt>
+	<dd>
+		The name of the category.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getName()<br/>
+		object setName( string )
+		</div>
+	</dd>
+</dl>
+
+<h2>API Calls</h2>
+<dl class="model-attributes">
+	<dt>array ProductCategory::all()</dt>
+	<dd>
+		Get all product categories defined by your shop.
+		<h5>Returns:</h5>
+		<div class="methods">
+			Array containing the list of ProductCategory objects that
+			are defined by your shop.
+		</div>
+	</dd>
+	<dt>object ProductCategory::get( integer $id )</dt>
+	<dd>
+		Get the product category identified by the unique id.
+		<h5>Returns:</h5>
+		<div class="methods">
+			An ProductCategory object identified by the unique id.
+		</div>
+	</dd>
+	<dt>object create()</dt>
+	<dd>
+		Create a new product category with the attributes defined
+		by this object. The id attribute, if set, will be ignored.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The ProductCategory object that was created.
+		</div>
+	</dd>
+</dl>
+
+	</div>
+
+</body>
+</html>

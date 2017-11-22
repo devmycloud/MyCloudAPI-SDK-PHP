@@ -1,0 +1,167 @@
+<html>
+<head>
+	<title>MyCloud API PHP SDK</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../../../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../../../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+	<link href="../../../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github home-page">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="../../../"><img src="../../../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../../../readme/">README</a>
+				<a href="../../../apidocs/">Documentation</a>
+				<a href="../../../downloads/mycloud-api-sdk-php-0.7.4.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+	<div class="bread-crumb">
+	<a href="../../../">Home</a
+		>&nbsp;&gt; <a href="../../../apidocs/">API&nbsp;Documentation</a
+		>&nbsp;&gt; Product
+</div>
+
+<h1>Product Model</h1>
+<p>
+	The Product model represents a product that your shop offers for sale.
+</p>
+
+<h2>Model Attributes</h2>
+<dl class="model-attributes">
+	<dt>id</dt>
+	<dd>
+		Unique numeric ID of the product.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getId()<br/>
+		object setId( integer )
+		</div>
+	</dd>
+	<dt>sku</dt>
+	<dd>
+		The SKU number of this product.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getSku()<br/>
+		object setSku( string )
+		</div>
+	</dd>
+	<dt>name</dt>
+	<dd>
+		The name of the product.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getName()<br/>
+		object setName( string )
+		</div>
+	</dd>
+	<dt>description</dt>
+	<dd>
+		The description of the product.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getDescription()<br/>
+		object setDescription( string )
+		</div>
+	</dd>
+	<dt>cost</dt>
+	<dd>
+		The cost of the product.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getCost()<br/>
+		object setCost( integer )
+		</div>
+	</dd>
+	<dt>price</dt>
+	<dd>
+		The price of the product.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getPrice()<br/>
+		object setPrice( integer )
+		</div>
+	</dd>
+	<dt>supplier_reference</dt>
+	<dd>
+		The supplier reference the product.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getSupplierReference()<br/>
+		object setSupplierReference( string )
+		</div>
+	</dd>
+</dl>
+
+<h2>API Calls</h2>
+<dl class="model-attributes">
+	<dt>array Product::all()</dt>
+	<dd>
+		Get all order created by your shop.
+		<h5>Returns:</h5>
+		<div class="methods">
+			Array containing the list of Product objects that
+			belong to your shop.
+		</div>
+	</dd>
+	<dt>object Product::get( integer $id )</dt>
+	<dd>
+		Get the product identified by the unique id.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Product object identified by the unique id.
+		</div>
+	</dd>
+	<dt>object create()</dt>
+	<dd>
+		Create a new product and attach it to your shop.
+		The Product object that you use to call this method
+		does not need an id, and if you provide an id, it will be
+		ignored. All other attributes of the Product object will be
+		saved with the newly created product.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Product object that was created.
+		</div>
+	</dd>
+	<dt>object update()</dt>
+	<dd>
+		Update an existing product.
+		The Product object that you use to call this method
+		<em>requires</em> a valid id to identiy the product that
+		will be updated. Other than the id, you only need to
+		provide the attributes that you wish to update. If an
+		attribute is not set, then it will not be updated in
+		the database, and it will keep it's original value.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Product object that was updated.
+		</div>
+	</dd>
+	<dt>object delete()</dt>
+	<dd>
+		Delete an existing product.
+		The Product object that you use to call this method
+		<em>requires</em> a valid id to identiy the product that
+		will be deleted.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Product object that was deleted.
+		</div>
+	</dd>
+</dl>
+
+	</div>
+
+</body>
+</html>

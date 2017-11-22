@@ -1,0 +1,140 @@
+<html>
+<head>
+	<title>MyCloud API PHP SDK</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png">
+	<link href="../../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github home-page">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="../../"><img src="../../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../../readme/">README</a>
+				<a href="../../apidocs/">Documentation</a>
+				<a href="../../downloads/mycloud-api-sdk-php-0.7.4.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+	<div class="page-content">
+		<div class="bread-crumb">
+			<a href="../../index.html">Home</a
+				>&nbsp;&gt; <a href="../../apidocs/index.html">API&nbsp;Documentation</a
+				>&nbsp;&gt; PHP&nbsp;SDK&nbsp;Overview
+		</div>
+
+		<h1>PHP SDK Overview</h1>
+		<p>
+			The MyCloud API PHP SDK provides a complete PHP implementation of
+			the client side the API. With the PHP SDK, you do not need to worry
+			about any of the low level details of programming with the API.
+			Connectivity, authentication, model objects, logging, and other
+			supporting code is all provided for you.
+		</p>
+		<p>
+			When working with the PHP SDK, you will work primarily with the
+			API model objects. Model objects provide everything you need to
+			work with any data related to your shop, as well as implement
+			all of the calls to the API server needed to create, get and
+			update that data.
+		</p>
+
+		<h2>Model Objects</h2>
+		<p>
+			All model objects in the PHP SDK are standard PHP classes and
+			class objects. You can work with them the same as you would
+			with any PHP class and object.
+		</p>
+		<p>
+			All model objects are contained in the PHP namespace
+			<code>MyCloud\Api\Model</code>. For convenience and to simplify
+			your code, you can add PHP <em>use</em> statements at the top
+			of your code as in:
+			<pre>
+ use MyCloud\Api\Model\Customer;
+ use MyCloud\Api\Model\Order;
+ use MyCloud\Api\Model\Product;</pre>
+			This will allow you to refer to the object classes directly
+			without specifying the namespace, as in:
+			<pre>
+ $order = new Order();
+ $customer_list = Customer::all();</pre>
+
+		<h2>Model Attributes</h2>
+		<p>
+			The model objects provide <em>attributes</em>. These attributes
+			use the PHP <em>magic</em> getter/setter paradigm. This means
+			that in general you can work with the attributes as object fields.
+			Furthermore, for each attribute the class will provide a getter
+			and setter method call.
+		</p>
+		<p>
+			For example, the Customer model has a <em>name</em> attribute.
+			Thus, you can access the value of the customer name with either
+			of these programming constructs:
+			<pre>
+ $name = $customer->name;
+ $name = $customer->getName();
+ $customer->name = $name;
+ $customer->setName( $name );</pre>
+		</p>
+
+		<h2>API Requests</h2>
+		<p>
+			API requests typically return model objects. You can then work
+			with the objects the same as any PHP object. However, there are
+			two cases where a model is not returned: errors and exceptions.
+		</p>
+		<p>
+			If an error occurs in an API request that does not cause the
+			API to fail processing the request, you will get back an
+			<strong>MCError</strong> object instead of a model object.
+			Thus, for every API call that you make that expects an object
+			to be returned, you must first check to see if that object is
+			an instance of class MCError. If it is, the object will contain
+			information regarding the error that occurred.
+		</p>
+		<p>
+			An example of handling both of these cases would look similar
+			to this:
+		</p>
+			<pre>
+try {
+	$product = Product::get( $product_id );
+
+	if ( $product instanceof MCError ) {
+		print "ERROR retrieving Product:" . PHP_EOL;
+		print "      " . $product-&gt;getMessage() . PHP_EOL;
+	} else {
+		print_product_data( "Product: ", $product );
+	}
+} catch ( Exception $ex ) {
+	print "EXCEPTION: " . $ex-&gt;getMessage() . PHP_EOL;
+}
+</pre>
+		<p>
+			You can see that we first check to see if the returned
+			object is an <em>instanceof</em> <strong>MCError</strong>.
+			If it is not, then the object returned is one of the API
+			models ready for you to use. We also wrap every SDK call
+			inside of a <code>try { ... } catch ( Exception $ex ) { ... }</code>
+			to make sure we catch any exceptions that may be thrown
+			by the SDK code. Exceptions will contain further information
+			about the error, which you can obtain with the getMessage()
+			function.
+		</p>
+	</div>
+
+	</div>
+
+</body>
+</html>

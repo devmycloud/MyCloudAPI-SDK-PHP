@@ -1,0 +1,94 @@
+<html>
+<head>
+	<title>MyCloud API PHP SDK</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png">
+	<link href="../../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github home-page">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="../../"><img src="../../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../../readme/">README</a>
+				<a href="../../apidocs/">Documentation</a>
+				<a href="../../downloads/mycloud-api-sdk-php-0.7.4.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+	<div class="page-content">
+		<div class="bread-crumb">
+			<a href="../../index.html">Home</a
+				>&nbsp;&gt; <a href="../../apidocs/index.html">API&nbsp;Documentation</a
+				>&nbsp;&gt; Protocol
+		</div>
+
+		<h1>Protocol</h1>
+		<p>
+			The MyCloud API is a RESTful API implemented using the HTTP protocol.
+			Over the HTTP protocol, a communication protocol is utilized to 
+			exchange the data necessary to fulfill any API request. The protocol
+			uses two separate standards to implement the data exchange:
+			<ul>
+				<li>
+					<strong>Upstream:</strong> multipart/form-data<br/>
+				</li>
+				<li>
+					<strong>Downstream:</strong> JSON<br/>
+				</li>
+			</ul>
+		</p>
+
+		<h2>Upstream</h2>
+		<p>
+			The upstream data is the data sent from the API client to the
+			API server. This data is exchanged using the
+			'multipart/form-data' standard defined by
+			<a href="https://tools.ietf.org/html/rfc7578">RFC7578</a>.
+			This is the standard data format that is used by web browsers
+			to submit data from a &lt;form&gt; on a webpage. The format
+			is support by most modern programming languages, and provides
+			support for sending files as well as fields.
+		</p>
+		<p>
+			If you are using the PHP SDK, you will not have to deal
+			with the upstream data. The SDK handles all of the data
+			conversions for you. You will work with the model classes
+			provided by the SDK, and the SDK will create the
+			multipart/form-data data that will be sent to the server
+			for you.
+		</p>
+
+		<h2>Downstream</h2>
+		<p>
+			The downstream data is the data that is sent from the API
+			server to the API client. This data is exchanged using the
+			JSON standard defined by
+			<a href="https://tools.ietf.org/html/rfc7159">RFC7159</a>.
+			This is JavaScript Object Notation, which is supported
+			by most modern programming languages, specifically JavaScript.
+			JSON provides a very convenient format for encoding object
+			data, which makes it well suited for exhanging object models.
+		</p>
+		<p>
+			If you are using the PHP SDK, you will not have to deal
+			with the downstream data. The SDK handles all of the data
+			conversions for you. The SDK will read all of the JSON data
+			sent from the API server, and convert that into the model
+			objects for you.
+		</p>
+	</div>
+
+	</div>
+
+</body>
+</html>

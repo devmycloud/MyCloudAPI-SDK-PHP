@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apidocs on MyCloudFulfillment API PHP SDK</title>
+    <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/</link>
+    <description>Recent content in Apidocs on MyCloudFulfillment API PHP SDK</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/authentication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/authentication/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Authentication  Authentication  The MyCloud API uses JSON Web Tokens (JWT) for authetication. This stateless authentication protocol is becoming a popular standard for API&#39;s for many good technical reasons. Here at MyCloud, we chose JWT because it is straighforward to implement, requires very little overhead, has libraries available in almost every popular programming language, and eliminates the need for state (such as sessions and cookies), which means that it can scale better.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/connection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/connection/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Connection  Connection  The MyCloud API is a RESTful API implemented using the HTTP protocol. This means that all connections to the API are the same as any other HTTP connection, which is the protocol used by every web browser to access a website. The advantage of the HTTP protocol is that it is a well established standard that is supported by every modern programming language in use today.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/</guid>
+      <description>Home&amp;nbsp;&amp;gt;&amp;nbsp;API&amp;nbsp;Documentation  API Overview  Overview Connection Authentication API Overview API Protocol PHP SDK Overview  API Models  Customer Delivery Mode Order Order Item Product Product Category Shop  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/customer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/customer/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Customer  Customer Model  The Customer model represents a customer that is defined for your shop. Model Attributes id  Unique numeric ID of the customer. Methods: integer getId() object setId( integer )   address  The address of the customer. Methods: string getAddress() object setAddress( string )   code  The code that the shop assigned to the customer. Methods: string getCode() object setCode( string )   email  The e-mail address of the customer.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/delivery-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/delivery-mode/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Delivery&amp;nbsp;Mode  Delivery Mode Model  The Delivery Mode model represents a mode of delivery that is defined for your shop. Model Attributes id  Unique numeric ID of the delivery mode. Methods: integer getId() object setId( integer )   code  The code that the shop assigned to the delivery mode. Methods: string getCode() object setCode( string )   name  The name of the delivery mode.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/order-item/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/order-item/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Order&amp;nbsp;Item  Order Item Model  The Order Item model represents a product that is an item on an order for your shop. For each product that is part of an order, there will be an order item. In other words, order items connect products to orders. Furthermore, an order item also defines the quantity of the product being ordered, as well as the actual price the product is being sold for on that order.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/order/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/order/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Order  Order Model  The Order model represents an order placed with your shop. Orders consist of OrderItems, which are the Products that are attached to the order. An order can have a Customer attached to it, but this is not required. And order must have a DeliveryMode attached to it to select the method of shipment. The payment attributes are provided for the customer to indicate to the shop when and how payment was made so the shop can verify payment.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/product-category/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/product-category/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Product&amp;nbsp;Category  Product Category Model  The Product Category model represents a category that you have defined to group products together. Model Attributes id  Unique numeric ID of the category. Methods: integer getId() object setId( integer )   code  The code assigned by the shop for this category. Methods: string getCode() object setCode( string )   name  The name of the category. Methods: string getName() object setName( string )    API Calls array ProductCategory::all()  Get all product categories defined by your shop.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/product/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/product/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Product  Product Model  The Product model represents a product that your shop offers for sale. Model Attributes id  Unique numeric ID of the product. Methods: integer getId() object setId( integer )   sku  The SKU number of this product. Methods: string getSku() object setSku( string )   name  The name of the product. Methods: string getName() object setName( string )   description  The description of the product.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/shop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/shop/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Shop  Shop Model [read-only]  The Shop model represents your shop. Note that this model is read-only. You can retrieve your Shop&#39;s model to access the information assigned to your shop, but the API does not provide any means for updating the Shop, or to create a new one. Model Attributes id  Unique numeric ID of the shop. Methods: integer getId()   code  The code assigned to the shop by MyCloud.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-api/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; API&amp;nbsp;Overview  API Overview  The MyCloud API is a RESTful API. It is built on top of the HTTP protocol to implement communications with the API server. API Requests  Client API requests send their data to the API server using the multipart/form-data specification defined by RFC7578, which is the same standard that web browsers use to submit form data when you submit an HTML &amp;lt;FORM&amp;gt; using the &#39;multipart/form-data&#39; enctype.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-php/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-php/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; PHP&amp;nbsp;SDK&amp;nbsp;Overview  PHP SDK Overview  The MyCloud API PHP SDK provides a complete PHP implementation of the client side the API. With the PHP SDK, you do not need to worry about any of the low level details of programming with the API. Connectivity, authentication, model objects, logging, and other supporting code is all provided for you.  When working with the PHP SDK, you will work primarily with the API model objects.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-protocol/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-protocol/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Protocol  Protocol  The MyCloud API is a RESTful API implemented using the HTTP protocol. Over the HTTP protocol, a communication protocol is utilized to exchange the data necessary to fulfill any API request. The protocol uses two separate standards to implement the data exchange:   Upstream: multipart/form-data   Downstream: JSON   Upstream  The upstream data is the data sent from the API client to the API server.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview/</guid>
+      <description>Home&amp;nbsp;&amp;gt; API&amp;nbsp;Documentation&amp;nbsp;&amp;gt; Overview  API Overview  The MyCloud API is a RESTful API providing access to your MyCloud shop and the data associated with your shop. The current release of the API does not implement access to every element of your shop. It is designedprimarily to facilitate managing your customer, products and orders. Future releases of the API will continue to add more functionality.  The API is implemented using standard HTTP connectivity and standard HTTP protocols.</description>
+    </item>
+    
+  </channel>
+</rss>

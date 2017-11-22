@@ -1,0 +1,121 @@
+<html>
+<head>
+	<title>MyCloud API PHP SDK</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+	<link href="../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github home-page">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="../"><img src="../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../readme/">README</a>
+				<a href="../apidocs/">Documentation</a>
+				<a href="../downloads/mycloud-api-sdk-php-0.7.4.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+	
+
+<h1 id="mycloudapi-sdk-php">MyCloudAPI-SDK-PHP</h1>
+
+<p>PHP based SDK for the MyCloud Fulfillment API</p>
+
+<p>Please see the <a href="https://devmycloud.github.io/MyCloudAPI-SDK-PHP/">Project Page</a> for up-to-date
+information, additional project details, and downloads.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>PHP 5.6 or above</li>
+<li><a href="http://php.net/manual/en/book.curl.php">curl</a>, <a href="http://php.net/manual/en/book.json.php">json</a> &amp; <a href="http://php.net/manual/en/book.openssl.php">openssl</a> extensions must be enabled</li>
+</ul>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>You are encouraged to use Composer to integrate this API with your PHP project.</p>
+
+<p>To include the project, make the following additions to your composer.json file:</p>
+
+<pre><code>&quot;require&quot;: {
+   &quot;mycloudth/rest-api-sdk-php&quot;: &quot;dev-master&quot;
+},
+&quot;repositories&quot;: [
+   {
+      &quot;type&quot;: &quot;vcs&quot;,
+      &quot;url&quot;: &quot;https://github.com/timbkbasic/MyCloudAPI-SDK-PHP.git&quot;
+   }
+]
+</code></pre>
+
+<p>Then run &ldquo;composer install&rdquo; or &ldquo;composer update&rdquo; to load the SDK into your project.
+Once you have installed the SDK via composer, you are ready to use the SDK in your
+project, without needing any &ldquo;requires&rdquo; in your code. However, you will need to set
+the constant MCAPI_CONFIG_PATH as noted below.</p>
+
+<p>If you are not using Composer, then you can obtain the &ldquo;Binary Distribution&rdquo; of the SDK.
+This will contain a top-level directory named &ldquo;vendor&rdquo;. The binary distribution is simply
+a copy of the vendor contents created by Composer, then packaged to allow you to include
+it in your project without using Composer. Everything packaged in the binary distribution
+is relative to this top-level &ldquo;vendor&rdquo; directory, so you must be careful to not rearrange
+the distribution package, or the Composer built dependencies are very likely to fail.</p>
+
+<p>If you do not want to work with Composer, then you can obtain a binary distribution
+that can be downloaded from the <a href="https://devmycloud.github.io/MyCloudAPI-SDK-PHP/">Project Page</a>.</p>
+
+<p>If you are working with the binary distribution of the SDK, you must copy the &ldquo;vendor&rdquo;
+directory into your project. In your code, you will need to use:</p>
+
+<pre><code>require_once('path_to_vendor_directory/autoload.php');
+</code></pre>
+
+<p>which will load the SDK and it&rsquo;s dependencies. After this require, you should be able to
+make calls against the API. However, before you require the autoload.php file, please be
+sure to set the constant MCAPI_CONFIG_PATH as noted below.</p>
+
+<p>The entire API depends on the file &ldquo;sdk_config.ini&rdquo; to properly configure the information that
+the API needs to work correctly. To ensure this ini file is available to the API, your code must
+define the constant &ldquo;MCAPI_CONFIG_PATH&rdquo; to point to the directory containing this configuration
+file. This constant must be defined <em>before</em> you access any of the SDK objects or methods, and it
+must be defined before calling &ldquo;require_once()&rdquo; (if you are using the binary distribution). If
+this constant is not defined, then the config file will be looked for in
+<code>dirname(__FILE__)/../config/</code>, but this is not recommended.</p>
+
+<p>An example of an sdk_config.ini file is included in the &ldquo;examples&rdquo; directory, as well as in
+the &ldquo;vendor&rdquo; directory. Either file is an excellent starting point for your configuration.
+The config file contains many comments to help you understand each configuration item.</p>
+
+<p>Examples of every possible use of the API are provided in the top-level directory &lsquo;examples&rsquo;.
+The file &ldquo;bootstrap.php&rdquo; is essential to every example to properly load the API, so if you
+are having trouble running the examples, this would be the place to start. The examples all
+use the sdk_config.ini file included in the examples directory.</p>
+
+<p><strong>NOTE</strong> That every RESTful call to the API can return either an API Model object (the model
+requested by the RESTful call), or it can return an instance of MyCloud\Api\Core\MCError.
+Furthermore, all RESTful calls can throw an Exception. Therefore, all of your RESTful API
+calls should be placed inside of a try-catch block, and the result of the call should always
+be checked against &ldquo;instanceof MCError&rdquo; to see if the result was an error. See the examples
+for the proper way to construct your API calls.</p>
+
+<h2 id="support">Support</h2>
+
+<p>Inquiries regarding this API should be directed to &ldquo;dev@mycloudfulfillment.com&rdquo;</p>
+
+<h2 id="license">License</h2>
+
+<p>Read <a href="LICENSE.txt">License.txt</a> for licensing information.</p>
+
+	</div>
+
+</body>
+</html>

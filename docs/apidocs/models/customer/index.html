@@ -1,0 +1,173 @@
+<html>
+<head>
+	<title>MyCloud API PHP SDK</title>
+	<link rel="icon" type="image/png" sizes="96x96" href="../../../img/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="72x72" href="../../../img/favicon-72x72.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../../../img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../../../img/favicon-16x16.png">
+	<link href="../../../css/mycloud.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i|Roboto+Condensed:400,700" rel="stylesheet">
+	<script src="https://use.fontawesome.com/e353b17481.js"></script>
+</head>
+<body class="mycloud-github home-page">
+
+	<div class="page-heading">
+		<div class="heading">
+			<a href="../../../"><img src="../../../img/logo_white.png" alt="MyCloud Logo"></a>
+			<h1>MyCloud API PHP SDK</h1>
+			<div class="buttons">
+				<a href="https://github.com/devmycloud/MyCloudAPI-SDK-PHP"><span class="fa fa-github"></span> GutHub</a>
+				<a href="../../../readme/">README</a>
+				<a href="../../../apidocs/">Documentation</a>
+				<a href="../../../downloads/mycloud-api-sdk-php-0.7.4.zip">Binary Distribution</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-content">
+	<div class="bread-crumb">
+	<a href="../../../">Home</a
+		>&nbsp;&gt; <a href="../../../apidocs/">API&nbsp;Documentation</a
+		>&nbsp;&gt; Customer
+</div>
+
+<h1>Customer Model</h1>
+<p>
+	The Customer model represents a customer that is defined for your shop.
+</p>
+<h2>Model Attributes</h2>
+<dl class="model-attributes">
+	<dt>id</dt>
+	<dd>
+		Unique numeric ID of the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getId()<br/>
+		object setId( integer )
+		</div>
+	</dd>
+	<dt>address</dt>
+	<dd>
+		The address of the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getAddress()<br/>
+		object setAddress( string )
+		</div>
+	</dd>
+	<dt>code</dt>
+	<dd>
+		The code that the shop assigned to the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getCode()<br/>
+		object setCode( string )
+		</div>
+	</dd>
+	<dt>email</dt>
+	<dd>
+		The e-mail address of the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getEmail()<br/>
+		object setEmail( string )
+		</div>
+	</dd>
+	<dt>name</dt>
+	<dd>
+		The name of the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getName()<br/>
+		object setName( string )
+		</div>
+	</dd>
+	<dt>note</dt>
+	<dd>
+		The note the shop has added to the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getNote()<br/>
+		object setNote( string )
+		</div>
+	</dd>
+	<dt>phone_number</dt>
+	<dd>
+		The phone number of the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getPhoneNumber()<br/>
+		object setPhoneNumber( string )
+		</div>
+	</dd>
+	<dt>postcode</dt>
+	<dd>
+		The postal code of the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getPostcode()<br/>
+		object setPostcode( string )
+		</div>
+	</dd>
+	<dt>social_id</dt>
+	<dd>
+		The Social Media id provided by the customer.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getSocialId()<br/>
+		object setSocialId( string )
+		</div>
+	</dd>
+</dl>
+
+<h2>API Calls</h2>
+<dl class="model-attributes">
+	<dt>array Customer::all()</dt>
+	<dd>
+		Get all customers defined by your shop.
+		<h5>Returns:</h5>
+		<div class="methods">
+			Array containing the list of Customer objects that
+			belong to your shop.
+		</div>
+	</dd>
+	<dt>object Customer::get( integer $id )</dt>
+	<dd>
+		Get the customer identified by the unique id.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Customer object identified by the unique id.
+		</div>
+	</dd>
+	<dt>object create()</dt>
+	<dd>
+		Create a new customer and attach it to your shop.
+		The Customer object that you use to call this method
+		does not need an id, and if you provide an id, it will be
+		ignored. All other attributes of the Customer object will be
+		saved with the newly created customer.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Customer object that was created.
+		</div>
+	</dd>
+	<dt>object update()</dt>
+	<dd>
+		Update an existing customer.
+		The Customer object that you use to call this method
+		<em>requires</em> a valid id to identiy the customer that
+		will be updated. Other than the id, you only need to
+		provide the attributes that you wish to update. If an
+		attribute is not set, then it will not be updated in
+		the database, and it will keep it's original value.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Customer object that was updated.
+		</div>
+	</dd>
+</dl>
+
+	</div>
+
+</body>
+</html>

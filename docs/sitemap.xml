@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/authentication/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/connection/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/customer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/delivery-mode/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/order-item/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/order/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/product-category/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/product/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/models/shop/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-php/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview-protocol/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/overview/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/readme/</loc>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/apidocs/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://devmycloud.github.io/MyCloudAPI-SDK-PHP/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
