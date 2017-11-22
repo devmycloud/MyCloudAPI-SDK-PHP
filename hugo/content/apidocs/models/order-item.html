@@ -1,0 +1,110 @@
++++
++++
+<div class="bread-crumb">
+	<a href="/">Home</a
+		>&nbsp;&gt; <a href="/apidocs/">API&nbsp;Documentation</a
+		>&nbsp;&gt; Order&nbsp;Item
+</div>
+
+<h1>Order Item Model</h1>
+<p>
+	The Order Item model represents a product that is an item on
+	an order for your shop. For each product that is part of an
+	order, there will be an order item. In other words, order items
+	<em>connect</em> products to orders. Furthermore, an order item
+	also defines the quantity of the product being ordered, as well
+	as the actual price the product is being sold for on that order.
+</p>
+<p>
+	Using OrderItems can be a little confusing at first. You need to
+	understand that OrderItems attached to an Order that you have
+	retrieved from the API are <em>complete</em> objects and have
+	all of their fields setup properly, including a complete Product
+	object. On the other hand, when you are creating a new order,
+	or updating an existing order, the OrderItem does not need a
+	complete Product object to function properly - it only needs
+	the order item's id for updating the price or quantity, and it
+	only needs a Product object with an id when creating a new
+	order item. Please see the example code provided for more details.
+</p>
+<h2>Model Attributes</h2>
+<dl class="model-attributes">
+	<dt>id</dt>
+	<dd>
+		Unique numeric ID of the order item.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getId()<br/>
+		object setId( integer )
+		</div>
+	</dd>
+	<dt>price</dt>
+	<dd>
+		The price of the order item. This is used to set the specific
+		price of this item for this order.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getPrice()<br/>
+		object setPrice( integer )
+		</div>
+	</dd>
+	<dt>quantity</dt>
+	<dd>
+		The number of order items purchased in this order.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getQuantity()<br/>
+		object setQuantity( integer )
+		</div>
+	</dd>
+</dl>
+
+<h2>API Calls</h2>
+<dl class="model-attributes">
+	<dt>array OrderItem::forOrder( Order $order )</dt>
+	<dd>
+		Get all of the order items attached to $order.
+		<h5>Returns:</h5>
+		<div class="methods">
+			An array of OrderItem objects attached to the order.
+			This function simply calls <code>OrderItem::forOrderId()</code>.
+		</div>
+	</dd>
+	<dt>array OrderItem::forOrderId( integer $order_id )</dt>
+	<dd>
+		Get all of the order items attached to the order identified
+		by $order_id.
+		<h5>Returns:</h5>
+		<div class="methods">
+			An array of OrderItem objects attached to the order
+			that has the id $order_id.
+		</div>
+	</dd>
+	<dt>object update()</dt>
+	<dd>
+		Update an existing order item.
+		The OrderItem object that you use to call this method
+		<em>requires</em> a valid id to identiy the order item that
+		will be updated. Other than the id, you only need to
+		provide the attributes that you wish to update. If an
+		attribute is not set, then it will not be updated in
+		the database, and it will keep it's original value.
+		It is not possible to change the product that the OrderItem
+		points to with this method.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The OrderItem object that was updated.
+		</div>
+	</dd>
+	<dt>object delete()</dt>
+	<dd>
+		Delete an existing order item.
+		The OrderItem object that you use to call this method
+		<em>requires</em> a valid id to identiy the order item that
+		will be deleted.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The OrderItem object that was deleted.
+		</div>
+	</dd>
+</dl>

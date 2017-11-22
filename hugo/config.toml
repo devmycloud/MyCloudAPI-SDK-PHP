@@ -1,0 +1,7 @@
+baseURL = "https://devmycloud.github.io/MyCloudAPI-SDK-PHP/"
+languageCode = "en-us"
+title = "MyCloudFulfillment API PHP SDK"
+relativeURLs = "true"
+
+[params]
+binary_version = "0.7.2"

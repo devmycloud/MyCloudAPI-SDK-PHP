@@ -1,0 +1,110 @@
++++
++++
+<div class="bread-crumb">
+	<a href="/">Home</a
+		>&nbsp;&gt; <a href="/apidocs/">API&nbsp;Documentation</a
+		>&nbsp;&gt; Shop
+</div>
+
+<h1>Shop Model [read-only]</h1>
+<p>
+	The Shop model represents your shop. Note that this model
+	is read-only. You can retrieve
+	your Shop's model to access the information assigned to your
+	shop, but the API does not provide any means for updating the
+	Shop, or to create a new one.
+</p>
+
+<h2>Model Attributes</h2>
+<dl class="model-attributes">
+	<dt>id</dt>
+	<dd>
+		Unique numeric ID of the shop.
+		<h5>Methods:</h5>
+		<div class="methods">
+		integer getId()<br/>
+		</div>
+	</dd>
+	<dt>code</dt>
+	<dd>
+		The code assigned to the shop by MyCloud.
+		This field is read-only, you cannot change it
+		via the API. New values will be ignored.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getCode()<br/>
+		</div>
+	</dd>
+	<dt>name</dt>
+	<dd>
+		The name of the shop.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getName()<br/>
+		</div>
+	</dd>
+	<dt>address</dt>
+	<dd>
+		The address of the shop.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getAddress()<br/>
+		</div>
+	</dd>
+	<dt>postcode</dt>
+	<dd>
+		The postal code of the shop.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getPostcode()<br/>
+		</div>
+	</dd>
+	<dt>contact_name</dt>
+	<dd>
+		The name of the contact person for the shop.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getContactName()<br/>
+		</div>
+	</dd>
+	<dt>phone_number</dt>
+	<dd>
+		The phone number of the shop.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getPhoneNumber()<br/>
+		</div>
+	</dd>
+	<dt>email</dt>
+	<dd>
+		The email address of the shop.
+		<h5>Methods:</h5>
+		<div class="methods">
+		string getEmail()<br/>
+		</div>
+	</dd>
+</dl>
+
+<h2>API Calls</h2>
+<dl class="model-attributes">
+	<dt>array Shop::all()</dt>
+	<dd>
+		Get all Shops associated with your account.
+		Currently MyCloud allows only one Shop per client account,
+		so the array returned will always contain at most one Shop.
+		<h5>Returns:</h5>
+		<div class="methods">
+			An array Shop objects.
+		</div>
+	</dd>
+	<dt>object Shop::get( integer $id )</dt>
+	<dd>
+		Get the Shop object identified by the provided id.
+		<h5>Returns:</h5>
+		<div class="methods">
+			The Shop object that is identified by the provided id.
+			If the Shop is not associated with your account,
+			a "not located" error will be returned.
+		</div>
+	</dd>
+</dl>

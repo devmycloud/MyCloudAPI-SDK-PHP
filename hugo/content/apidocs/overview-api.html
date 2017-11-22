@@ -1,0 +1,56 @@
++++
++++
+	<div class="page-content">
+		<div class="bread-crumb">
+			<a href="/index.html">Home</a
+				>&nbsp;&gt; <a href="/apidocs/index.html">API&nbsp;Documentation</a
+				>&nbsp;&gt; API&nbsp;Overview
+		</div>
+
+		<h1>API Overview</h1>
+		<p>
+			The MyCloud API is a RESTful API. It is built on top of the
+			HTTP protocol to implement communications with the API server.
+		</p>
+
+		<h2>API Requests</h2>
+		<p>
+			Client API requests send their data to the API server
+			using the multipart/form-data specification defined by
+			<a href="https://tools.ietf.org/html/rfc7578">RFC7578</a>,
+			which is the same standard that web browsers use to submit
+			form data when you submit an HTML &lt;FORM&gt; using the
+			'multipart/form-data' enctype. This standard
+			was chosen because it is supported by virtually every modern
+			programming language, and has many online tools for simulating
+			requests with the data format.
+		</p>
+
+		<h2>API Responses</h2>
+		<p>
+			The API server responses send their data to the client
+			using the JSON (JavaScript Object Notation) standard defined
+			by <a href="https://tools.ietf.org/html/rfc7159">RFC7159</a>.
+			This standard was chosen because it is inherently suitable
+			to represent object structures, is supported by virtually
+			every modern programming language, and it easily read in
+			it's native form by the developer.
+		</p>
+
+		<h2>API Data Encoding</h2>
+		<p>
+			The MyCloud database, and thus the API, utilizes UTF8
+			encoding for all data that is not ASCII data.
+		</p>
+		<p>
+			For all data used with the MyCloud API,
+			UTF8 encoding should be used for any data that
+			is not contained within the ASCII dataset. In other words, if
+			your data contains Thai script, that data should be encoded
+			with UTF8. In general, you should not need to do anything
+			special to make this work. If you are editing code that
+			contains Thai script, your editor most likely uses UTF8 to
+			store the program file. Most of the tools that you are using
+			to access, manipulate, and display data use UTF8.
+		</p>
+	</div>
