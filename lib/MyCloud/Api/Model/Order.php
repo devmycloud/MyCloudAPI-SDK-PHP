@@ -313,10 +313,10 @@ class Order extends MyCloudModel
 	 *
 	 * NOTE The Product with the given Shop SKU MUST already exist.
 	 */
-	public function addProductByShopSKU( $sku, $quantity, $price )
+	public function addProductByShopSKU( $shop_sku, $quantity, $price )
 	{
 		$product = new Product();
-		$product->setShopSKU( $sku );
+		$product->setShopSKU( $shop_sku );
 		$order_item = new OrderItem();
 		$order_item
 			->setOrder( $this )
@@ -353,8 +353,9 @@ class Order extends MyCloudModel
 		// ArgumentValidator::validate($params, 'params');
         $payLoad = array();
         $allowedParams = array(
-            'page_size' => 1,
+			'deleted' => 1,
             'page' => 1,
+            'page_size' => 1,
             // 'start_time' => 1,
             // 'end_time' => 1,
             // 'sort_order' => 1,
@@ -363,7 +364,7 @@ class Order extends MyCloudModel
         );
 
         $json_data = self::executeCall(
-            "/v1/orders" . "?" . http_build_query(array_intersect_key($params, $allowedParams)),
+            "/v1/orders" . "?" . http_build_query( array_intersect_key($params, $allowedParams) ),
             "GET",
             $payLoad,
             array(),
