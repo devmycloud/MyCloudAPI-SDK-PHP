@@ -125,6 +125,9 @@ function print_product( $title, $product ) {
 	print "   Description: " . $product->description . PHP_EOL;
 	print "   PhotoUrl: " . $product->photo_url . PHP_EOL;
 	print "   SupplierRef: " . $product->supplier_reference . PHP_EOL;
+	print "   Physical Inventory: " . $product->physical_inventory . PHP_EOL;
+	print "   Reserved Inventory: " . $product->reserved_inventory . PHP_EOL;
+	print "   Available Inventory: " . $product->available_inventory . PHP_EOL;
 	print "   ClientReference[1]: " . $product->getClientReference(0) . PHP_EOL;
 	print "   ClientReference[2]: " . $product->getClientReference(1) . PHP_EOL;
 	print "   ClientReference[3]: " . $product->getClientReference(2) . PHP_EOL;

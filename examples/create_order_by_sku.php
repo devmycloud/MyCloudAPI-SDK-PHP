@@ -49,6 +49,7 @@ if ( count($argv) < 11 ) {
 			->setPostcode($argv[3])
 			->setPhoneNumber($argv[4])
 			->setEmail($argv[5])
+			->setStatus( Order::API_STATUS_APPROVED )
 			->attachFile( $attachment, $filename, $filetype, $filepath );
 
 		// Only set the customer if we got a model from the API
