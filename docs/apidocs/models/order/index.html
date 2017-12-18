@@ -380,12 +380,27 @@
 		ids on your system, so you do not need to retrieve them from the API
 		each time you want to create a new order.
 		</p>
+		<p>
+		Method addProductBySKU() is the same as addProduct(), but you only
+		need the MyCloud SKU of the product. This allows you to keep a list of product
+		MyCloud SKUs on your system, so you do not need to retrieve them from the API
+		each time you want to create a new order.
+		</p>
+		<p>
+		Method addProductByShopSKU() is the same as addProduct(), but you only
+		need the Shop SKU of the product. The Shop SKU is the SKU number that
+		your shop has assigned to the product. This allows you to keep a list of product
+		SKUs on your system, so you do not need to retrieve them from the API
+		each time you want to create a new order.
+		</p>
 		<h5>Methods:</h5>
 		<div class="methods">
 		array getOrderItems()<br/>
 		object addOrderItem( object OrderItem )
 		object addProduct( object Product )
 		object addProductById( integer )
+		object addProductBySKU( string )
+		object addProductByShopSKU( string )
 		</div>
 	</dd>
 </dl>
@@ -441,6 +456,10 @@
 		of an order item already attached to this order), or
 		created (when the order id has no id). The same behavior
 		(update or create) will happen for Customer and DeliveryMode.
+		NOTE You cannot change the status of an order after it
+		has entered the "picking" stage of the order processing.
+		Once the order has started the picking stage, all attempts
+		to update the order status will be rejected with an error.
 		<h5>Returns:</h5>
 		<div class="methods">
 			The Order object that was updated.

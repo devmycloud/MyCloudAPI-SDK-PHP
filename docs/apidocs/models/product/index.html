@@ -153,7 +153,9 @@
 		Delete an existing product.
 		The Product object that you use to call this method
 		<em>requires</em> a valid id to identiy the product that
-		will be deleted.
+		will be deleted. NOTE You cannot delete a product that
+		has inventory. Only products that have zero
+		"physical inventory" can be deleted with this call.
 		<h5>Returns:</h5>
 		<div class="methods">
 			The Product object that was deleted.
