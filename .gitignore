@@ -1,3 +1,7 @@
 composer.phar
 /vendor/
 **.DS_Store
+examples/MyCloud-back.log
+examples/sdk_config_live.ini
+examples/sdk_config_local.ini
+examples/sdk_config_test.ini
