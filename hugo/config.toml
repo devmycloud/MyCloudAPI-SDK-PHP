@@ -4,4 +4,4 @@ title = "MyCloudFulfillment API PHP SDK"
 relativeURLs = "true"
 
 [params]
-binary_version = "0.7.4"
+binary_version = "0.7.6"
