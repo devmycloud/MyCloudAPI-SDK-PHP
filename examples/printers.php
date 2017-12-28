@@ -40,6 +40,8 @@ function print_order( $title, $order ) {
 	print "   Total Price: " . $order->total_price . PHP_EOL;
 	print "   Weight: " . $order->weight . PHP_EOL;
 	print "   Urgent: " . ($order->urgent ? 'Yes' : 'No') . PHP_EOL;
+	print "   BitlyCode: " . $order->bitly_code . PHP_EOL;
+	print "   BitlyUrl: " . $order->bitly_url . PHP_EOL;
 	print "   Shipping Information:" . PHP_EOL;
 	print "      Name: " . $order->name . PHP_EOL;
 	print "      Address: " . $order->address . PHP_EOL;
