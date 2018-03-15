@@ -354,8 +354,8 @@ class Order extends MyCloudModel
         $payLoad = array();
         $allowedParams = array(
 			'deleted' => 1,
-            'page' => 1,
-            'page_size' => 1,
+            'offset' => 0,
+            'count' => 100,
             // 'start_time' => 1,
             // 'end_time' => 1,
             // 'sort_order' => 1,
