@@ -4,6 +4,9 @@ PHP based SDK for the MyCloud Fulfillment API
 Please see the [Project Page](https://devmycloud.github.io/MyCloudAPI-SDK-PHP/) for up-to-date
 information, additional project details, and downloads.
 
+Please refer to the [Documentation Page](https://devmycloud.github.io/MyCloudAPI-SDK-PHP/index.html)
+for a complete description of the API and how to use it.
+
 ## Prerequisites
    * PHP 5.6 or above
    * [curl](http://php.net/manual/en/book.curl.php), [json](http://php.net/manual/en/book.json.php) & [openssl](http://php.net/manual/en/book.openssl.php) extensions must be enabled
