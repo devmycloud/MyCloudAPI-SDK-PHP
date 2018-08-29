@@ -17,15 +17,6 @@ class Customer extends MyCloudModel
 {
 	public $order = NULL;
 
-    /**
-     * Default Constructor
-     *
-     */
-	//    public function __construct( $order=NULL )
-	//    {
-	//		$this->order = $order;
-	//    }
-
 	public function getId() {
 		return $this->id;
 	}

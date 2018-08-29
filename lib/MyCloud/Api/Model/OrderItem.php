@@ -21,20 +21,6 @@ use MyCloud\Api\Core\MyCloudModel;
 
 class OrderItem extends MyCloudModel
 {
-	public $order = NULL;
-	public $product = NULL;
-
-    /**
-     * Default Constructor
-     *
-     */
-	//    public function __construct( $order, $product=NULL, $quantity=0, $price=0 )
-	//    {
-	//		$this->order = $order;
-	//		$this->price = $price;
-	//		$this->product = $product;
-	//		$this->quantity = $quantity;
-	//    }
 
 	public function getId() {
 		return $this->id;

@@ -33,10 +33,6 @@ class Order extends MyCloudModel
 	const API_STATUS_UNKNOWN     = 'UNKNOWN';
 
 	public $order_items = array();
-	
-	// public $customer = NULL;
-	//
-	// public $delivery_mode = NULL;
 
 	public $attachments = array();
 
