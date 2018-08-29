@@ -32,8 +32,8 @@ if ( count($argv) != 10 ) {
 	print "   attachmentFilePath is the path to the file on the local computer" . PHP_EOL;
 } else {
 	try {
-		$products = Product::all();
-		$customers = Customer::all();
+		$products = Product::all( array('offset' => 0, 'count' => 10) );
+		$customers = Customer::all( array('offset' => 0, 'count' => 10) );
 		$delivery_modes = DeliveryMode::all();
 
 		$createOrder = new Order();

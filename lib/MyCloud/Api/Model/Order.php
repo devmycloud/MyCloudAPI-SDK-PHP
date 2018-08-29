@@ -34,9 +34,9 @@ class Order extends MyCloudModel
 
 	public $order_items = array();
 	
-	public $customer = NULL;
-	
-	public $delivery_mode = NULL;
+	// public $customer = NULL;
+	//
+	// public $delivery_mode = NULL;
 
 	public $attachments = array();
 
@@ -463,10 +463,37 @@ class Order extends MyCloudModel
     public function create( $apiContext = null )
     {
 		$order = NULL;
+		$customer_id = NULL;
+		$delivery_mode_id = NULL;
+
+		// First we need to remove Objects that can never be set.
+		// We need to get their Id's and unset their fields BEFORE
+		// the call to toArray() below. Then set their payload values
+		// after that call, if they are actually set.
+		//
+		if ( ! empty($this->customer) ) {
+			$customer_id = $this->customer->id;
+			unset($this->customer);
+		}
+		if ( ! empty($this->delivery_mode) ) {
+			$delivery_mode_id = $this->delivery_mode->id;
+			unset($this->delivery_mode);
+		}
+
         $payload = $this->toArray();
 
-		$payload['customer_id'] = empty($this->customer) ? '0' : $this->customer->id;
-		$payload['delivery_mode_id'] = empty($this->delivery_mode) ? '0' : $this->delivery_mode->id;
+		// NOTE These sets will override the ID if it was set explicitly
+		// In other words, we are ASSUMING that if the client set the Object
+		// field, they intended to override the ID field. If this assumption
+		// is wrong, this code needs to be modified.
+		//
+		if ( $customer_id !== NULL ) {
+			$payload['customer_id'] = $customer_id;
+		}
+
+		if ( $delivery_mode_id !== NULL ) {
+			$payload['delivery_mode_id'] = $delivery_mode_id;
+		}
 
 		$index  = 0;
 		foreach ( $this->order_items as $order_item ) {

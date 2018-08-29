@@ -37,6 +37,7 @@ function print_order( $title, $order ) {
 	print "   Customer Reference: " . $order->customer_reference . PHP_EOL;
 	print "   CreateDate: " . $order->create_date . PHP_EOL;
 	print "   DeliveryDate: " . $order->delivery_date . PHP_EOL;
+	print "   Pickable?: " . ($order->can_pick ? 'Yes' : 'No') . PHP_EOL;
 	print "   Total Price: " . $order->total_price . PHP_EOL;
 	print "   Weight: " . $order->weight . PHP_EOL;
 	print "   Urgent: " . ($order->urgent ? 'Yes' : 'No') . PHP_EOL;
@@ -127,13 +128,16 @@ function print_product( $title, $product ) {
 	print "   Description: " . $product->description . PHP_EOL;
 	print "   PhotoUrl: " . $product->photo_url . PHP_EOL;
 	print "   SupplierRef: " . $product->supplier_reference . PHP_EOL;
-	print "   Physical Inventory: " . $product->physical_inventory . PHP_EOL;
-	print "   Reserved Inventory: " . $product->reserved_inventory . PHP_EOL;
+	print "   Physical Inventory:  " . $product->physical_inventory . PHP_EOL;
+	print "   Reserved Inventory:  " . $product->reserved_inventory . PHP_EOL;
+	print "   WaitPay Inventory:   " . $product->waitpayment_inventory . PHP_EOL;
+	print "   RecvPay Inventory:   " . $product->recvpayment_inventory . PHP_EOL;
+	print "   Approved Inventory:  " . $product->approved_inventory . PHP_EOL;
 	print "   Available Inventory: " . $product->available_inventory . PHP_EOL;
-	print "   ClientReference[1]: " . $product->getClientReference(0) . PHP_EOL;
-	print "   ClientReference[2]: " . $product->getClientReference(1) . PHP_EOL;
-	print "   ClientReference[3]: " . $product->getClientReference(2) . PHP_EOL;
-	print "   ClientReference[4]: " . $product->getClientReference(3) . PHP_EOL;
+	print "   ClientReference[1]:  " . $product->getClientReference(0) . PHP_EOL;
+	print "   ClientReference[2]:  " . $product->getClientReference(1) . PHP_EOL;
+	print "   ClientReference[3]:  " . $product->getClientReference(2) . PHP_EOL;
+	print "   ClientReference[4]:  " . $product->getClientReference(3) . PHP_EOL;
 }
 
 function print_shop( $title, $shop ) {

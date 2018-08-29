@@ -128,13 +128,15 @@ class Customer extends MyCloudModel
 		// ArgumentValidator::validate($params, 'params');
         $payLoad = "";
         $allowedParams = array(
-            'page_size' => 1,
-            'page' => 1,
-            'start_time' => 1,
-            'end_time' => 1,
-            'sort_order' => 1,
-            'sort_by' => 1,
-            'total_required' => 1
+            'offset' => 0,
+            'count' => 10,
+            // 'page_size' => 1,
+            // 'page' => 1,
+            // 'start_time' => 1,
+            // 'end_time' => 1,
+            // 'sort_order' => 1,
+            // 'sort_by' => 1,
+            // 'total_required' => 1
         );
 
         $json_data = self::executeCall(

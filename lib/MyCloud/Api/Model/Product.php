@@ -136,7 +136,7 @@ class Product extends MyCloudModel
         $payLoad = "";
         $allowedParams = array(
             'offset' => 0,
-            'count' => 100,
+            'count' => 10,
             // 'start_time' => 1,
             // 'end_time' => 1,
             // 'sort_order' => 1,
