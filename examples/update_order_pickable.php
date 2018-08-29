@@ -19,7 +19,6 @@ if ( count($argv) != 3 ) {
 } else {
 	try {
 		$updateOrder = new Order();
-		var_export($updateOrder);
 		$updateOrder->setId($argv[1]);
 		$updateOrder->can_pick =
 			($argv[2] == '1' || strtoupper($argv[2]) == 'TRUE') ? 1 : 0;
